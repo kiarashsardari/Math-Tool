@@ -1,3 +1,4 @@
+import sympy as sp
 import matplotlib.pyplot as plt
 import numpy as np
 import math
@@ -126,3 +127,18 @@ def sigma(i, n, f):
     if isinstance(i, int) and isinstance(n, int):
         return 0 if i>n else sum(f(j) for j in range(i,n+1))
     raise ValueError('i & n should be an integer number')
+
+
+def matrix_equality(A,B):
+    l = (A == B)
+    for i in l :
+        for j in i :
+            if not j:
+                return False
+    return True
+
+
+def partial_derivative(f, *sympols_list):
+    sympols_list = [sp.Symbol(s) for s in sympols_list]
+    return [sp.diff(f, x) for x in sympols_list]
+
