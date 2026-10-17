@@ -1,4 +1,4 @@
-# 🧮 MathTool
+# MathTool
 
 <div align="center">
 
