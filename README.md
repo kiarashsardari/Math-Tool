@@ -1,9 +1,8 @@
-<div align="center">
-**MathTool**
-</div>
+# MathTool
+
 <div align="center">
 
-**جعبه ابزاری سبک، سریع و کاربردی برای محاسبات آماری، جبر خطی و حساب دیفرانسیل در پایتون**
+**جعبهابزاری سبک، سریع و کاربردی برای محاسبات آماری، جبر خطی و حساب دیفرانسیل در پایتون**
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white&style=for-the-badge)
 ![NumPy](https://img.shields.io/badge/NumPy-1.20%2B-013243?logo=numpy&style=for-the-badge)
@@ -246,7 +245,7 @@ def chebyshev(nums, k)
 
 ```python
 >>> chebyshev([1, 2, 3, 4, 5], 2)
-(0.1715728752538097, 5.82842712474619)
+(-0.8284271247461901, 6.82842712474619)
 ```
 
 > 💡 اگر انحراف معیار صفر باشد، هر دو کران برابر میانگین خواهند بود.
@@ -395,7 +394,7 @@ def sigma(i, n, f=lambda x: x)
 
 ```python
 >>> sigma(0, 10, lambda x: 2*x**2 + 3*x - 3)
-902
+825
 >>> sigma(1, 5)  # 1 + 2 + 3 + 4 + 5
 15
 ```
