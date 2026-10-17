@@ -1,5 +1,5 @@
 <div align="center">
-# MathTool
+**MathTool**
 </div>
 <div align="center">
 
