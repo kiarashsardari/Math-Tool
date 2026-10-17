@@ -1,67 +1,105 @@
-# Math Tool
+# ╭──────────────────────────────────────────────╮
+# │                                              │
+# │              M A T H   T O O L               │
+# │      ─────────────────────────────────       │
+# │      Statistical & Mathematical Toolkit      │
+# │                for Python 3                  │
+# │                                              │
+# ╰──────────────────────────────────────────────╯
 
-مجموعه‌ای از توابع کاربردی برای محاسبات آماری، پردازش آرایه، تشخیص نوع ماتریس، محاسبه معیارهای خطا، جمع‌بندی بازه‌ای، مشتق‌گیری نمادین و رسم نمودار مقایسه‌ای.
-
-`math_tool.py` بر پایه‌ی `NumPy`، `SymPy` و `Matplotlib` نوشته شده و توابع آن برای ورودی‌های لیستی، آرایه‌ای و ماتریسی طراحی شده‌اند.
-
----
-
-## فهرست
-
-- [معرفی](#معرفی)
-- [قابلیت‌ها](#قابلیتها)
-- [پیش‌نیازها](#پیشنیازها)
-- [نصب و راه‌اندازی](#نصب-و-راهاندازی)
-- [اجرای دمو](#اجرای-دمو)
-- [استفاده‌ی سریع](#استفادهی-سریع)
-- [مرجع توابع](#مرجع-توابع)
-- [مثال‌های کاربردی](#مثالهای-کاربردی)
-- [نکات پیاده‌سازی](#نکات-پیادهسازی)
+> **A lightweight, dependency-aware Python module** for statistical analysis, array
+> processing, matrix classification, error metrics, symbolic differentiation, and
+> comparative plotting — built on top of `NumPy`, `SymPy`, and `Matplotlib`.
 
 ---
 
-## معرفی
+## ◈ Table of Contents
 
-`math_tool.py` یک ماژول مستقل پایتون است که مجموعه‌ای از توابع پرکاربرد ریاضی و آماری را در اختیار قرار می‌دهد. هدف اصلی این ماژول، فراهم کردن میان‌برهای ساده، خوانا و قابل استفاده‌ی مجدد برای کارهای روزمره است.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-حوزه‌های اصلی:
+**Getting Started**
 
-- محاسبات آماری پایه (میانگین، واریانس، انحراف معیار)
-- نرمال‌سازی داده‌ها
-- محاسبه‌ی بازه‌ی چبیشف
-- تشخیص نوع ماتریس از نظر ساختاری
-- محاسبه‌ی معیارهای خطا (MSE و RMSE)
-- جمع‌بندی بازه‌ای با تابع دلخواه
-- مشتق‌گیری نمادین با `SymPy`
-- رسم نمودار مقایسه‌ای برای دو تابع
-- مقایسه‌ی برابری ماتریس‌ها
+- [Overview](#-overview)
+- [Feature Set](#-feature-set)
+- [Requirements](#-requirements)
+- [Installation](#-installation)
+- [Quick Demo](#-quick-demo)
+
+</td>
+<td width="50%" valign="top">
+
+**API Reference**
+
+- [Utility Helpers](#-utility-helpers)
+- [Statistics](#-statistics)
+- [Normalization](#-normalization)
+- [Matrix Analysis](#-matrix-analysis)
+- [Error Metrics](#-error-metrics)
+- [Symbolic Math](#-symbolic-math)
+- [Visualization](#-visualization)
+
+</td>
+</tr>
+</table>
 
 ---
 
-## قابلیت‌ها
+## ◈ Overview
 
-| قابلیت | توضیح |
+**`math_tool.py`** is a self-contained Python module designed to provide clean,
+readable shortcuts for everyday mathematical and statistical tasks. It is intended
+for users who work with `NumPy` arrays, `SymPy` expressions, or `Matplotlib` plots
+and want a consistent, reusable interface.
+
+The module is organized around the following pillars:
+
+| Pillar | Description |
 |:---|:---|
-| آمار پایه | میانگین، واریانس و انحراف معیار جامعه‌ای |
-| نرمال‌سازی z-score | با مدیریت حالت انحراف معیار صفر |
-| بازه‌ی چبیشف | محاسبه‌ی سریع بازه بر اساس ضریب `k` |
-| تشخیص نوع ماتریس | تشخیص ۸ نوع ساختاری ماتریس |
-| معیارهای خطا | محاسبه‌ی MSE و RMSE |
-| جمع‌بندی بازه‌ای | تابع `sigma` با پشتیبانی از تابع سفارشی |
-| مشتق نمادین | مشتق‌گیری چندمتغیره با `SymPy` |
-| نمودار مقایسه‌ای | رسم سریع دو تابع روی یک نمودار |
-| مقایسه‌ی ماتریس | بررسی برابری دو ماتریس |
+| **Statistics** | Mean, variance, and standard deviation (population-based) |
+| **Normalization** | Robust z-score normalization with zero-variance handling |
+| **Matrix Analysis** | Detection of 8 structural matrix types |
+| **Error Metrics** | MSE and RMSE for regression and prediction evaluation |
+| **Symbolic Math** | Multi-variable differentiation via `SymPy` |
+| **Visualization** | Side-by-side function comparison plots |
 
 ---
 
-## پیش‌نیازها
+## ◈ Feature Set
 
-- Python 3
-- NumPy
-- SymPy
-- Matplotlib
+<table>
+<tr><td>
 
-نصب یک‌جا:
+**Stable**
+- ✔ Handles list, array, and matrix inputs uniformly
+- ✔ Automatically flattens inputs for statistical functions
+- ✔ Returns `None` gracefully for empty inputs
+- ✔ Population-based variance and standard deviation
+
+</td><td>
+
+**Robust**
+- ✔ Correct handling of zero standard deviation
+- ✔ Safe integer validation in `sigma` (rejects `bool`)
+- ✔ Shape-aware matrix equality checking
+- ✔ Comprehensive matrix type classification
+
+</td></tr>
+</table>
+
+---
+
+## ◈ Requirements
+
+```
+Python  ≥ 3.7
+NumPy   ≥ 1.20
+SymPy   ≥ 1.9
+Matplotlib ≥ 3.4
+```
+
+Install all dependencies at once:
 
 ```bash
 pip install numpy sympy matplotlib
@@ -69,15 +107,15 @@ pip install numpy sympy matplotlib
 
 ---
 
-## نصب و راه‌اندازی
+## ◈ Installation
 
-فایل `math_tool.py` را در پوشه‌ی پروژه قرار دهید. سپس:
+Place `math_tool.py` in your project directory. Then import it as a module:
 
 ```python
 import math_tool as mt
 ```
 
-یا فقط توابع مورد نیازتان را وارد کنید:
+Or import only what you need:
 
 ```python
 from math_tool import loc, variance, scale, norm
@@ -85,19 +123,18 @@ from math_tool import loc, variance, scale, norm
 
 ---
 
-## اجرای دمو
+## ◈ Quick Demo
 
-فایل دارای بخش اجرای مستقیم است. برای مشاهده‌ی نمونه‌ها:
+Run the built-in demo:
 
 ```bash
 python math_tool.py
 ```
 
-بین مراحل با فشردن `Enter` پیش بروید. در پایان یک نمودار مقایسه‌ای نیز نمایش داده می‌شود.
+The script walks through each function interactively, pausing with `Enter` between
+steps, and finishes with a comparison plot.
 
----
-
-## استفاده‌ی سریع
+**Quick start example:**
 
 ```python
 import math_tool as mt
@@ -108,28 +145,35 @@ A = [
     [0, 0, 3]
 ]
 
-print(mt.loc(A))            # میانگین
-print(mt.variance(A))       # واریانس
-print(mt.scale(A))          # انحراف معیار
-print(mt.chebyshev(A, 3))   # بازه‌ی چبیشف
-print(mt.norm(A))           # نرمال‌سازی
-print(mt.detect_matrix(A))  # نوع ماتریس
+print(mt.loc(A))            # 3.666...
+print(mt.variance(A))       # population variance
+print(mt.scale(A))          # population std-dev
+print(mt.chebyshev(A, 3))   # Chebyshev interval
+print(mt.norm(A))           # z-score normalization
+print(mt.detect_matrix(A))  # ('diagonal', (3, 3))
 ```
 
 ---
 
-## مرجع توابع
+# ╭──────────────────────────────────────────────╮
+# │              A P I   R E F E R E N C E       │
+# ╰──────────────────────────────────────────────╯
 
-### `is_empty`
+---
+
+## ◈ Utility Helpers
+
+### ▸ `is_empty(x)`
+
+Checks whether the input contains zero elements.
 
 ```python
-is_empty(x)
+is_empty(x: Any) -> bool
 ```
 
-بررسی می‌کند که آیا ورودی از نظر تعداد عناصر خالی است یا نه.
-
-- **ورودی:** `x` — هر مقدار قابل تبدیل به آرایه
-- **خروجی:** `bool`
+| Parameter | Type | Description |
+|:---|:---|:---|
+| `x` | any | Value convertible to an array |
 
 ```python
 mt.is_empty([])        # True
@@ -138,16 +182,13 @@ mt.is_empty([1, 2])    # False
 
 ---
 
-### `flat_and_array`
+### ▸ `flat_and_array(x)`
+
+Converts the input to a 1-D NumPy array.
 
 ```python
-flat_and_array(x)
+flat_and_array(x: Any) -> np.ndarray
 ```
-
-ورودی را به آرایه‌ی NumPy یک‌بعدی تبدیل می‌کند.
-
-- **ورودی:** `x` — لیست، آرایه یا عدد
-- **خروجی:** `numpy.ndarray` یک‌بعدی
 
 ```python
 mt.flat_and_array([[1, 2], [3, 4]])
@@ -156,15 +197,17 @@ mt.flat_and_array([[1, 2], [3, 4]])
 
 ---
 
-### `loc`
+## ◈ Statistics
+
+### ▸ `loc(nums)`
+
+Returns the arithmetic mean of the elements.
 
 ```python
-loc(nums)
+loc(nums: array_like) -> float | None
 ```
 
-میانگین عناصر را محاسبه می‌کند.
-
-- **خروجی:** عدد یا `None` برای ورودی خالی
+> **Note:** Returns `None` for an empty input.
 
 ```python
 mt.loc([1, 2, 3, 4])   # 2.5
@@ -173,15 +216,13 @@ mt.loc([])             # None
 
 ---
 
-### `variance`
+### ▸ `variance(nums)`
+
+Returns the **population variance** (divides by `n`).
 
 ```python
-variance(nums)
+variance(nums: array_like) -> float | None
 ```
-
-واریانس جامعه‌ای عناصر را محاسبه می‌کند (تقسیم بر `n`).
-
-- **خروجی:** واریانس یا `None` برای ورودی خالی
 
 ```python
 mt.variance([1, 2, 3, 4])   # 1.25
@@ -190,15 +231,13 @@ mt.variance([])             # None
 
 ---
 
-### `scale`
+### ▸ `scale(nums)`
+
+Returns the **population standard deviation** (square root of variance).
 
 ```python
-scale(nums)
+scale(nums: array_like) -> float | None
 ```
-
-انحراف معیار جامعه‌ای (جذر واریانس) را برمی‌گرداند.
-
-- **خروجی:** انحراف معیار یا `None` برای ورودی خالی
 
 ```python
 mt.scale([1, 2, 3, 4])
@@ -207,24 +246,15 @@ mt.scale([1, 2, 3, 4])
 
 ---
 
-### `chebyshev`
+### ▸ `chebyshev(nums, k)`
+
+Computes the Chebyshev interval `(μ − k·σ, μ + k·σ)`.
 
 ```python
-chebyshev(nums, k)
+chebyshev(nums: array_like, k: float) -> tuple[float, float] | None
 ```
 
-بازه‌ی چبیشف را بر اساس میانگین و انحراف معیار محاسبه می‌کند:
-
-```
-(μ - k·σ , μ + k·σ)
-```
-
-- **ورودی‌ها:**
-  - `nums` — لیست یا آرایه‌ی اعداد
-  - `k` — ضریب مثبت
-- **خروجی:** تاپل `(mean - k * std, mean + k * std)`
-- **استثنا:** اگر `k <= 0` باشد، `ValueError` پرتاب می‌شود.
-- **ورودی خالی:** `None`
+> **Raises:** `ValueError` if `k <= 0`.
 
 ```python
 mt.chebyshev([1, 2, 3, 4], 2)
@@ -233,21 +263,22 @@ mt.chebyshev([1, 2, 3, 4], 2)
 
 ---
 
-### `norm`
+## ◈ Normalization
+
+### ▸ `norm(x_s)`
+
+Performs z-score normalization:
+
+```
+z = (x − μ) / σ
+```
 
 ```python
-norm(x_s)
+norm(x_s: array_like) -> np.ndarray | None
 ```
 
-نرمال‌سازی z-score را انجام می‌دهد:
-
-```
-z = (x - μ) / σ
-```
-
-- **ورودی:** `x_s` — لیست یا آرایه‌ی اعداد
-- **خروجی:** آرایه‌ی نرمال‌شده یا `None` برای ورودی خالی
-- **نکته:** اگر انحراف معیار صفر باشد، آرایه‌ی یک‌بعدی ورودی بدون تغییر برگردانده می‌شود.
+> **Edge case:** If the standard deviation is zero, the flattened input is returned
+> unchanged.
 
 ```python
 mt.norm([1, 2, 3])
@@ -256,33 +287,28 @@ mt.norm([1, 2, 3])
 
 ---
 
-### `detect_matrix`
+## ◈ Matrix Analysis
+
+### ▸ `detect_matrix(M)`
+
+Classifies a matrix by its structural type and returns its shape.
 
 ```python
-detect_matrix(M)
+detect_matrix(M: array_like) -> tuple[str | None, tuple]
 ```
 
-نوع ماتریس و شکل آن را تشخیص می‌دهد.
-
-- **خروجی:** تاپل `(typ, shape)`
-- **رفتارها:**
-  - ورودی خالی: `(None, M.shape)`
-  - آرایه‌ی صفر‌بعدی یا یک‌بعدی: ابتدا به شکل `(1, -1)` تبدیل می‌شود.
-  - آرایه با ابعاد بیشتر از دو: `ValueError`
-  - همه‌ی عناصر صفر: نوع `null`
-
-انواع قابل تشخیص:
-
-| نوع | توضیح |
+| Type | Description |
 |:---|:---|
-| `null` | همه‌ی عناصر صفر |
-| `identity` | ماتریس همانی |
-| `scalar` | ماتریس اسکالر (قطری با عناصر برابر) |
-| `diagonal` | ماتریس قطری |
-| `square` | ماتریس مربعی غیرقطری |
-| `column` | ماتریس یک‌ستونی |
-| `row` | ماتریس یک‌سطری |
-| `rectangular` | ماتریس مستطیلی عمومی |
+| `null` | All elements are zero |
+| `identity` | Identity matrix |
+| `scalar` | Diagonal matrix with equal non-zero diagonal entries |
+| `diagonal` | Diagonal matrix with unequal entries |
+| `square` | Square matrix (non-diagonal) |
+| `column` | Single-column matrix with more than one row |
+| `row` | Single-row matrix with more than one column |
+| `rectangular` | General rectangular matrix |
+
+> **Raises:** `ValueError` for arrays with more than two dimensions.
 
 ```python
 mt.detect_matrix([[1, 0], [0, 1]])   # ('identity', (2, 2))
@@ -293,102 +319,13 @@ mt.detect_matrix([[0, 0], [0, 0]])   # ('null',     (2, 2))
 
 ---
 
-### `mse`
+### ▸ `matrix_equal(A, B)`
+
+Checks element-wise equality between two matrices.
 
 ```python
-mse(y_true_array, y_pred_array)
+matrix_equal(A: array_like, B: array_like) -> bool
 ```
-
-میانگین مربعات خطا (MSE) را محاسبه می‌کند.
-
-- **ورودی‌ها:**
-  - `y_true_array` — مقادیر واقعی
-  - `y_pred_array` — مقادیر پیش‌بینی‌شده
-- **خروجی:** مقدار MSE یا `None`
-- **شرط:** اندازه‌ی دو ورودی باید یکسان و غیرصفر باشد؛ در غیر این صورت `None` برگردانده می‌شود.
-
-```python
-mt.mse([1, 2, 3], [1, 2, 4])
-# 0.3333333333333333
-```
-
----
-
-### `rmse`
-
-```python
-rmse(mse_value)
-```
-
-جذر مقدار MSE را محاسبه می‌کند.
-
-- **خروجی:** مقدار RMSE یا `None` در صورت `None` بودن ورودی
-
-```python
-mt.rmse(0.3333333333333333)
-# 0.5773502691896257
-```
-
----
-
-### `comparison_plot`
-
-```python
-comparison_plot(f_true, f_pred)
-```
-
-دو تابع را روی بازه‌ی `[1, 10]` با ۱۰۰ نقطه رسم و مقایسه می‌کند.
-
-- **ورودی‌ها:**
-  - `f_true` — تابع واقعی
-  - `f_pred` — تابع پیش‌بینی یا تقریبی
-- **برچسب‌ها:** `truth` و `guess`
-
-```python
-mt.comparison_plot(
-    f_true=lambda x: 2*x**2 + 3*x - 3,
-    f_pred=lambda x: 2*x**2 + 2*x - 3
-)
-```
-
----
-
-### `sigma`
-
-```python
-sigma(i, n, f=lambda x: x)
-```
-
-جمع‌بندی بازه‌ای شامل:
-
-```
-Σ  f(j)    for j = i .. n
-```
-
-- **ورودی‌ها:**
-  - `i` — ابتدای بازه
-  - `n` — انتهای بازه
-  - `f` — تابع اعمال‌شده روی هر مقدار
-- **استثنا:** اگر `i` یا `n` عدد صحیح نباشند یا از نوع `bool` باشند، `TypeError` پرتاب می‌شود.
-- **نکته:** اگر `i > n` باشد، نتیجه `0` است.
-
-```python
-mt.sigma(0, 10, lambda x: 2*x**2 + 3*x - 3)
-# 902
-```
-
----
-
-### `matrix_equal`
-
-```python
-matrix_equal(A, B)
-```
-
-برابری دو ماتریس را بررسی می‌کند.
-
-- **خروجی:** `bool`
-- **منطق:** ابتدا شکل دو آرایه مقایسه می‌شود؛ در صورت برابر بودن، `np.array_equal` استفاده می‌شود.
 
 ```python
 mt.matrix_equal([[1, 2]], [[1, 2]])   # True
@@ -397,18 +334,71 @@ mt.matrix_equal([[1, 2]], [[1, 3]])   # False
 
 ---
 
-### `derivative`
+## ◈ Error Metrics
+
+### ▸ `mse(y_true_array, y_pred_array)`
+
+Computes Mean Squared Error.
 
 ```python
-derivative(f, *symbols)
+mse(y_true_array, y_pred_array) -> float | None
 ```
 
-مشتق عبارت `SymPy` را نسبت به یک یا چند نماد محاسبه می‌کند.
+> **Condition:** Both inputs must have the same, non-zero number of elements;
+> otherwise, returns `None`.
 
-- **ورودی‌ها:**
-  - `f` — عبارت `SymPy`
-  - `*symbols` — نمادها؛ می‌توانند `SymPy Symbol` یا رشته باشند
-- **خروجی:** لیستی از مشتق‌ها به ترتیب نمادهای ورودی
+```python
+mt.mse([1, 2, 3], [1, 2, 4])
+# 0.3333333333333333
+```
+
+---
+
+### ▸ `rmse(mse_value)`
+
+Returns the square root of the given MSE value.
+
+```python
+rmse(mse_value: float | None) -> float | None
+```
+
+```python
+mt.rmse(0.3333333333333333)
+# 0.5773502691896257
+```
+
+---
+
+## ◈ Symbolic Math
+
+### ▸ `sigma(i, n, f)`
+
+Computes an inclusive summation:
+
+```
+Σ  f(j)    for j = i .. n
+```
+
+```python
+sigma(i: int, n: int, f: Callable = lambda x: x) -> number
+```
+
+> **Raises:** `TypeError` if `i` or `n` is not an integer or is of type `bool`.
+
+```python
+mt.sigma(0, 10, lambda x: 2*x**2 + 3*x - 3)
+# 902
+```
+
+---
+
+### ▸ `derivative(f, *symbols)`
+
+Returns symbolic derivatives of a `SymPy` expression.
+
+```python
+derivative(f: sp.Expr, *symbols) -> list[sp.Expr]
+```
 
 ```python
 import sympy as sp
@@ -422,9 +412,32 @@ mt.derivative(f, 'x', 'y')
 
 ---
 
-## مثال‌های کاربردی
+## ◈ Visualization
 
-### آمار روی ماتریس
+### ▸ `comparison_plot(f_true, f_pred)`
+
+Plots two functions on the interval `[1, 10]` with 100 sample points.
+
+```python
+comparison_plot(f_true: Callable, f_pred: Callable) -> None
+```
+
+> **Labels:** `truth` for the true function, `guess` for the predicted function.
+
+```python
+mt.comparison_plot(
+    f_true=lambda x: 2*x**2 + 3*x - 3,
+    f_pred=lambda x: 2*x**2 + 2*x - 3
+)
+```
+
+---
+
+# ╭──────────────────────────────────────────────╮
+# │              E X A M P L E S                 │
+# ╰──────────────────────────────────────────────╯
+
+### ▸ Statistics on a Matrix
 
 ```python
 import math_tool as mt
@@ -438,7 +451,7 @@ print("chebyshev: ", mt.chebyshev(A, 3))
 print("normalized:", mt.norm(A))
 ```
 
-### تشخیص نوع ماتریس
+### ▸ Matrix Type Detection
 
 ```python
 matrices = {
@@ -455,7 +468,7 @@ for name, M in matrices.items():
     print(f"{name:>9} -> {mt.detect_matrix(M)}")
 ```
 
-### محاسبه‌ی خطا
+### ▸ Error Evaluation
 
 ```python
 y_true = [3, -0.5, 2, 7]
@@ -466,7 +479,7 @@ print("MSE: ", mse_value)
 print("RMSE:", mt.rmse(mse_value))
 ```
 
-### جمع‌بندی و مشتق
+### ▸ Summation and Differentiation
 
 ```python
 import sympy as sp
@@ -480,7 +493,7 @@ expr = x**3 + 2*x**2 + x
 print("derivative:", mt.derivative(expr, 'x'))
 ```
 
-### رسم نمودار مقایسه‌ای
+### ▸ Comparative Plot
 
 ```python
 import math_tool as mt
@@ -493,15 +506,29 @@ mt.comparison_plot(
 
 ---
 
-## نکات پیاده‌سازی
+# ╭──────────────────────────────────────────────╮
+# │         I M P L E M E N T A T I O N          │
+# ╰──────────────────────────────────────────────╯
 
-- توابع آماری ورودی را با `flat_and_array` به آرایه‌ی یک‌بعدی تبدیل می‌کنند؛ بنابراین ماتریس‌ها نیز به‌صورت مجموعه‌ای از عناصر مسطح پردازش می‌شوند.
-- `variance` و `scale` از فرمول جامعه‌ای استفاده می‌کنند (تقسیم بر `n`، نه `n-1`).
-- در `norm` اگر انحراف معیار صفر باشد، خروجی همان آرایه‌ی مسطح‌شده‌ی ورودی است.
-- در `detect_matrix` ابتدا حالت صفر بودن کل ماتریس بررسی می‌شود؛ بنابراین ماتریس صفر از نوع `null` گزارش می‌شود.
-- `detect_matrix` برای آرایه‌های یک‌بعدی آن‌ها را به شکل یک سطر در نظر می‌گیرد.
-- `mse` فقط زمانی مقدار عددی برمی‌گرداند که اندازه‌ی دو ورودی برابر و غیرصفر باشد.
-- `sigma` بازه را به‌صورت شامل از `i` تا `n` پیمایش می‌کند.
-- `derivative` خروجی را همیشه به‌صورت لیست برمی‌گرداند؛ حتی اگر فقط یک نماد وارد شده باشد.
-- `comparison_plot` بازه‌ی رسم را به‌صورت ثابت از `1` تا `10` با ۱۰۰ نقطه در نظر می‌گیرد.
-- برای استفاده از `derivative`، عبارت ورودی باید از نوع عبارات `SymPy` باشد.
+> **Design Notes** — Important behaviors to keep in mind when using the module.
+
+- Statistical functions flatten their inputs via `flat_and_array`, so matrices are
+  processed as a single sequence of elements.
+- `variance` and `scale` use the **population** formula (division by `n`, not `n-1`).
+- In `norm`, a zero standard deviation returns the flattened input unchanged.
+- `detect_matrix` checks the all-zero case first, so the zero matrix is always
+  reported as `null`.
+- `detect_matrix` treats 1-D arrays as single-row matrices.
+- `mse` returns a numeric value only when both inputs have equal, non-zero size.
+- `sigma` iterates inclusively from `i` to `n`.
+- `derivative` always returns a list, even when a single symbol is provided.
+- `comparison_plot` uses a fixed interval `[1, 10]` with 100 sample points.
+- `derivative` expects a `SymPy` expression as input.
+
+---
+
+<div align="center">
+
+**math_tool.py** — crafted for clarity, built for reuse.
+
+</div>
