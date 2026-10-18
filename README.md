@@ -79,7 +79,7 @@
 ### روش ۲ — کلون با Git
 
 ```bash
-git clone https://github.com/kiarashsardari/LYM.git
+git clone https://github.com/kiarashsardari/Math-Tool.git
 cd LYM
 ```
 
