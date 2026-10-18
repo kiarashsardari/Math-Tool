@@ -66,13 +66,27 @@
 
 ## <a id="installation"></a>📦 نصب و پیش‌نیازها
 
-این ماژول تنها به سه کتابخانه نیاز دارد:
+این ماژول تنها به سه کتابخانه نیاز دارد. این پیش‌نیازها در فایل `requirements.txt` تعریف شده‌اند:
+
+```txt
+numpy>=1.20
+sympy>=1.9
+matplotlib>=3.5
+```
+
+برای نصب تمام پیش‌نیازها، در ریشهٔ پروژه اجرا کنید:
 
 ```bash
-pip install numpy sympy matplotlib
+pip install -r requirements.txt
 ```
 
 سپس فایل `math_tool.py` را در کنار پروژه خود قرار دهید یا در مسیر `PYTHONPATH` کپی کنید. نیازی به نصب پکیج جداگانه‌ای نیست.
+
+> 💡 در صورت نیاز می‌توانید ابتدا `pip` را به‌روزرسانی کنید:
+>
+> ```bash
+> python -m pip install --upgrade pip
+> ```
 
 ---
 
@@ -597,6 +611,7 @@ python math_tool.py
 ## 🗂 ساختار فایل
 
 ```
+requirements.txt
 math_tool.py
 │
 ├── ابزارهای کمکی
@@ -629,3 +644,11 @@ math_tool.py
 ```
 
 ---
+
+### فایل `requirements.txt`
+
+```txt
+numpy>=1.20
+sympy>=1.9
+matplotlib>=3.5
+```
