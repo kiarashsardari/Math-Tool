@@ -1,1058 +1,116 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MathTool — جعبه‌ابزار ریاضی پایتون</title>
-<meta name="description" content="جعبه ابزاری سبک، سریع و کاربردی برای محاسبات آماری، جبر خطی و حساب دیفرانسیل در پایتون">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
-<style>
-  :root{
-    --bg:#080b10;
-    --surface:#0f151d;
-    --surface-2:#141c26;
-    --border:#1f2937;
-    --border-soft:#172029;
-    --text:#e6edf3;
-    --muted:#8b97a6;
-    --muted-2:#6b7787;
-    --accent:#2dd4bf;
-    --accent-2:#38bdf8;
-    --accent-glow:rgba(45,212,191,.14);
-    --code-bg:#0b1118;
-    --radius:14px;
-    --maxw:1180px;
-    --nav-h:66px;
-  }
+<div align="center">
+<h1 align="center">MathTool</h1>
+</div>
+<div align="center">
 
-  *{box-sizing:border-box;margin:0;padding:0;}
+**جعبه ابزاری سبک، سریع و کاربردی برای محاسبات آماری، جبر خطی و حساب دیفرانسیل در پایتون**
 
-  html{scroll-behavior:smooth;}
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white&style=for-the-badge)
+![NumPy](https://img.shields.io/badge/NumPy-1.20%2B-013243?logo=numpy&style=for-the-badge)
+![SymPy](https://img.shields.io/badge/SymPy-1.9%2B-3B5526?logo=sympy&style=for-the-badge)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-3.5%2B-11557C?logo=matplotlib&style=for-the-badge)
 
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:"Vazirmatn","Segoe UI",Tahoma,sans-serif;
-    font-size:16px;
-    line-height:1.85;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:clip;
-  }
+</div>
 
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-      radial-gradient(700px 400px at 85% -5%, rgba(45,212,191,.12), transparent 60%),
-      radial-gradient(700px 400px at 10% 0%, rgba(56,189,248,.10), transparent 60%);
-    pointer-events:none;
-    z-index:0;
-  }
+---
 
-  .wrap{
-    max-width:var(--maxw);
-    margin:0 auto;
-    padding:0 24px;
-    position:relative;
-    z-index:1;
-  }
+## 📖 فهرست مطالب
 
-  a{color:var(--accent);text-decoration:none;}
+- [معرفی](#-معرفی)
+- [ویژگی‌ها](#features)
+- [نصب و پیش‌نیازها](#installation)
+- [شروع سریع](#-شروع-سریع)
+- [مستندات کامل توابع](#-مستندات-کامل-توابع)
+    - [ابزارهای کمکی](#1-ابزارهای-کمکی)
+    - [آمار توصیفی](#2-آمار-توصیفی)
+    - [بازه چبیشف و نرمال‌سازی](#chebyshev)
+    - [تشخیص نوع ماتریس](#4-تشخیص-نوع-ماتریس)
+    - [معیارهای خطا](#5-معیارهای-خطا)
+    - [سیگما و مشتق](#6-سیگما-و-مشتق)
+    - [رسم نمودار](#7-رسم-نمودار)
+    - [مقایسه ماتریس‌ها](#matrix-equal)
+- [مثال‌های ترکیبی](#examples)
+- [اجرای دمو](#-اجرای-دمو)
+- [ساختار فایل](#-ساختار-فایل)
 
-  a:focus-visible,
-  button:focus-visible,
-  summary:focus-visible{
-    outline:2px solid var(--accent);
-    outline-offset:3px;
-    border-radius:6px;
-  }
+---
 
-  code{
-    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
-    font-size:.85em;
-    background:rgba(56,189,248,.09);
-    color:#7dd3fc;
-    padding:.16em .45em;
-    border-radius:6px;
-    direction:ltr;
-    display:inline-block;
-    unicode-bidi:embed;
-  }
+## 🎯 معرفی
 
-  /* ============ NAVBAR ============ */
-  header.nav{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:rgba(8,11,16,.72);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-soft);
-  }
+**MathTool** یک ماژول سبک و مستقل است که مجموعه‌ای از پرکاربردترین عملیات ریاضی را در قالب توابعی ساده و خوانا در اختیار شما قرار می‌دهد. این ابزار با تکیه بر **NumPy** برای محاسبات برداری، **SymPy** برای محاسبات نمادین و **Matplotlib** برای رسم نمودار، به شما امکان می‌دهد بدون نوشتن کدهای تکراری، به سرعت به نتایج دقیق برسید.
 
-  .nav-inner{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    height:var(--nav-h);
-    gap:18px;
-  }
+مناسب برای:
 
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:900;
-    font-size:1.25rem;
-    letter-spacing:.5px;
-    color:var(--text);
-  }
+- 🎓 دانشجویان و پژوهشگران در حوزه آمار و ریاضی
+- 🤖 مهندسان یادگیری ماشین برای محاسبه معیارهای خطا
+- 📊 تحلیلگران داده برای محاسبات سریع توصیفی
+- 🧪 توسعه‌دهندگان برای نمونه‌سازی سریع الگوریتم‌ها
 
-  .brand .dot{
-    width:11px;height:11px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    box-shadow:0 0 14px var(--accent);
-  }
+---
 
-  .brand span{background:linear-gradient(135deg,#2dd4bf,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent;}
+## <a id="features"></a>✨ ویژگی‌ها
 
-  .nav-links{
-    display:flex;
-    align-items:center;
-    gap:20px;
-    font-size:.9rem;
-    font-weight:600;
-  }
+| ویژگی | توضیح |
+|-------|--------|
+| 📊 **آمار توصیفی** | میانگین، واریانس و انحراف معیار برای هر نوع ورودی (لیست، تاپل، ماتریس) |
+| 📏 **بازه چبیشف** | محاسبه بازه `[μ − kσ, μ + kσ]` با اعتبارسنجی پارامتر k |
+| ⚖️ **نرمال‌سازی Z-Score** | استانداردسازی داده‌ها با محافظت در برابر تقسیم بر صفر |
+| 🔍 **تشخیص نوع ماتریس** | شناسایی خودکار ماتریس‌های پوچ، قطری، اسکالر، همانی، مربعی، ستونی و سطری |
+| 🎯 **معیارهای خطا** | محاسبه MSE و RMSE با بررسی تطابق ابعاد |
+| ➗ **عملگر سیگما** | جمع‌بندی روی دامنه دلخواه با تابع اختیاری و اعتبارسنجی نوع |
+| 🧾 **مشتق‌گیری نمادین** | مشتق چندمتغیره با SymPy و تبدیل خودکار رشته به نماد |
+| 📈 **رسم مقایسه‌ای** | نمودار دو تابع در بازه [1, 10] با برچسب‌گذاری خودکار |
+| ✅ **مقایسه ماتریس‌ها** | بررسی برابری دقیق دو ماتریس با چک کردن شکل |
 
-  .nav-links a{color:var(--muted);transition:color .18s;white-space:nowrap;}
-  .nav-links a:hover{color:var(--text);}
+---
 
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:9px 18px;
-    border-radius:10px;
-    font-weight:700;
-    font-size:.9rem;
-    border:1px solid var(--border);
-    color:var(--text);
-    background:var(--surface);
-    transition:.18s;
-    white-space:nowrap;
-    cursor:pointer;
-  }
+## <a id="installation"></a>📦 نصب و پیش‌نیازها
 
-  .btn:hover{border-color:var(--accent);background:var(--surface-2);color:var(--text);}
+> **پیش‌نیاز:** پایتون نسخه **۳.۸** یا بالاتر
 
-  .btn-primary{
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    color:#04121a;
-    border:none;
-    box-shadow:0 6px 22px -8px rgba(45,212,191,.7);
-  }
+### روش ۱ — دانلود ZIP (بدون نیاز به Git)
 
-  .btn-primary:hover{
-    background:linear-gradient(135deg,#3ee0cb,#4cc4fb);
-    color:#04121a;
-    transform:translateY(-1px);
-  }
+<div align="center">
 
-  .btn svg{width:17px;height:17px;fill:currentColor;}
+**۱.** روی دکمه‌ی سبز **`<> Code`** کلیک کنید  **→**  **۲.** گزینه‌ی **`Download ZIP`** را بزنید  **→**  **۳.** فایل را از حالت فشرده خارج کنید
 
-  .menu-toggle{
-    display:none;
-    background:none;border:none;color:var(--text);
-    font-size:1.4rem;cursor:pointer;
-    padding:4px 8px;line-height:1;
-  }
+</div>
 
-  /* ============ HERO ============ */
-  .hero{
-    padding:88px 0 70px;
-    text-align:center;
-    position:relative;
-  }
+### روش ۲ — کلون با Git
 
-  .hero .pill{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:6px 16px;
-    border-radius:999px;
-    border:1px solid rgba(45,212,191,.32);
-    background:rgba(45,212,191,.07);
-    color:var(--accent);
-    font-size:.83rem;
-    font-weight:700;
-    margin-bottom:26px;
-  }
+```bash
+git clone https://github.com/kiarashsardari/Math-Tool.git
+cd LYM
+```
 
-  .hero .pill::before{
-    content:"";
-    width:7px;height:7px;border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 10px var(--accent);
-    animation:pulse 2s infinite;
-  }
+این ماژول تنها به سه کتابخانه نیاز دارد. این پیش‌نیازها در فایل `requirements.txt` تعریف شده‌اند:
 
-  @keyframes pulse{50%{opacity:.3;}}
-
-  .hero h1{
-    font-size:clamp(2.6rem,7vw,4.6rem);
-    font-weight:900;
-    letter-spacing:-1.5px;
-    line-height:1.1;
-    margin-bottom:18px;
-    background:linear-gradient(135deg,#fff 20%,#2dd4bf 60%,#38bdf8 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-  }
-
-  .hero .sub{
-    font-size:clamp(1.05rem,2.4vw,1.35rem);
-    font-weight:700;
-    color:var(--text);
-    margin-bottom:20px;
-  }
-
-  .hero .desc{
-    max-width:730px;
-    margin:0 auto 34px;
-    color:var(--muted);
-    font-size:1.02rem;
-    line-height:2.1;
-  }
-
-  .hero .desc strong{color:#c9d4e0;font-weight:700;}
-
-  .hero-actions{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:14px;
-    margin-bottom:38px;
-  }
-
-  .badges{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:9px;
-  }
-
-  .badges img{height:28px;display:block;border-radius:6px;}
-
-  /* ============ SECTION ============ */
-  section{
-    padding:70px 0;
-    scroll-margin-top:calc(var(--nav-h) + 20px);
-  }
-
-  .sec-head{
-    margin-bottom:44px;
-    text-align:center;
-  }
-
-  .sec-head .kicker{
-    display:inline-block;
-    font-size:.8rem;
-    font-weight:800;
-    letter-spacing:2px;
-    color:var(--accent);
-    text-transform:uppercase;
-    margin-bottom:12px;
-  }
-
-  .sec-head h2{
-    font-size:clamp(1.6rem,4vw,2.3rem);
-    font-weight:900;
-    letter-spacing:-.6px;
-    margin-bottom:12px;
-  }
-
-  .sec-head p{
-    color:var(--muted);
-    max-width:620px;
-    margin:0 auto;
-    font-size:.98rem;
-  }
-
-  /* ============ GRID & CARDS ============ */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(275px,1fr));
-    gap:18px;
-  }
-
-  .card{
-    background:linear-gradient(160deg,var(--surface),var(--surface-2));
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:24px;
-    transition:.22s;
-    position:relative;
-    overflow:hidden;
-  }
-
-  .card::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:radial-gradient(320px 130px at 100% 0%, var(--accent-glow), transparent 70%);
-    opacity:0;
-    transition:opacity .25s;
-    pointer-events:none;
-  }
-
-  .card:hover{
-    border-color:rgba(45,212,191,.42);
-    transform:translateY(-4px);
-  }
-
-  .card:hover::after{opacity:1;}
-
-  .card .ico{
-    width:42px;height:42px;
-    display:flex;align-items:center;justify-content:center;
-    border-radius:11px;
-    background:rgba(45,212,191,.1);
-    border:1px solid rgba(45,212,191,.24);
-    font-size:1.15rem;
-    margin-bottom:16px;
-  }
-
-  .card h3{
-    font-size:1.03rem;
-    font-weight:800;
-    margin-bottom:8px;
-    color:#fff;
-  }
-
-  .card p{
-    font-size:.9rem;
-    color:var(--muted);
-    line-height:1.95;
-  }
-
-  /* ============ INTRO ============ */
-  .intro-text{
-    max-width:820px;
-    margin:0 auto 34px;
-    text-align:center;
-    color:var(--muted);
-    font-size:1rem;
-    line-height:2.15;
-  }
-
-  .intro-text strong{color:#c9d4e0;font-weight:700;}
-
-  /* ============ CODE BLOCK ============ */
-  .code-box{
-    background:var(--code-bg);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    overflow:hidden;
-    box-shadow:0 20px 50px -30px rgba(0,0,0,.9);
-  }
-
-  .code-bar{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:12px 16px;
-    background:var(--surface-2);
-    border-bottom:1px solid var(--border);
-  }
-
-  .code-bar .d{width:11px;height:11px;border-radius:50%;}
-  .code-bar .d1{background:#ff5f57;}
-  .code-bar .d2{background:#febc2e;}
-  .code-bar .d3{background:#28c840;}
-  .code-bar .fn{
-    margin-inline-start:auto;
-    font-family:monospace;
-    font-size:.78rem;
-    color:var(--muted-2);
-    direction:ltr;
-  }
-
-  .code-box pre{
-    padding:22px 20px;
-    overflow-x:auto;
-    direction:ltr;
-    text-align:left;
-    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
-    font-size:.87rem;
-    line-height:1.8;
-    color:#c9d4e0;
-    margin:0;
-  }
-
-  .code-box pre::-webkit-scrollbar{height:8px;}
-  .code-box pre::-webkit-scrollbar-thumb{background:#25313f;border-radius:4px;}
-
-  .code-box.compact pre{padding:14px 16px;font-size:.82rem;line-height:1.7;}
-  .code-box.compact .code-bar{padding:8px 12px;}
-  .code-box.compact .code-bar .fn{font-size:.72rem;}
-
-  /* ============ INSTALL ============ */
-  .two-col{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-  }
-
-  .step-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:26px;
-  }
-
-  .step-card .num{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:32px;height:32px;
-    border-radius:9px;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    color:#04121a;
-    font-weight:900;
-    font-size:.9rem;
-    margin-bottom:14px;
-  }
-
-  .step-card h3{font-size:1.05rem;font-weight:800;margin-bottom:14px;}
-
-  .step-card p{color:var(--muted);font-size:.92rem;margin-bottom:12px;}
-
-  .flow-steps{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:22px;
-    margin-bottom:20px;
-  }
-
-  .flow-steps .st{
-    padding:7px 14px;
-    border-radius:9px;
-    background:var(--surface-2);
-    border:1px solid var(--border);
-    font-size:.85rem;
-    font-weight:600;
-    color:#c9d4e0;
-  }
-
-  .flow-steps .ar{color:var(--accent);font-weight:900;}
-
-  .note{
-    border-radius:12px;
-    padding:14px 20px;
-    font-size:.9rem;
-    margin:16px 0;
-    border-inline-start:4px solid var(--accent);
-    background:rgba(45,212,191,.07);
-    color:#b7f5ec;
-  }
-
-  .note strong{color:#e6fffb;}
-
-  .note.warn{
-    border-inline-start-color:#fbbf24;
-    background:rgba(251,191,36,.07);
-    color:#fde68a;
-  }
-
-  .note.warn strong{color:#fff8e1;}
-
-  /* ============ TABLE ============ */
-  .table-wrap{
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    overflow:hidden;
-    background:var(--surface);
-  }
-
-  table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:.92rem;
-  }
-
-  thead th{
-    background:var(--surface-2);
-    text-align:right;
-    padding:14px 18px;
-    font-weight:800;
-    color:#fff;
-    font-size:.88rem;
-    border-bottom:1px solid var(--border);
-    white-space:nowrap;
-  }
-
-  tbody td{
-    padding:13px 18px;
-    border-bottom:1px solid var(--border-soft);
-    color:var(--muted);
-    vertical-align:top;
-  }
-
-  tbody tr:last-child td{border-bottom:0;}
-  tbody tr:hover{background:rgba(45,212,191,.03);}
-  tbody td strong{color:#dfe8f2;}
-
-  .center{text-align:center;}
-
-  /* ============ OUTPUT TERMINAL ============ */
-  .terminal{
-    background:#04070a;
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    overflow:hidden;
-    box-shadow:0 30px 60px -35px rgba(0,0,0,.95);
-  }
-
-  .terminal .tbar{
-    display:flex;align-items:center;gap:8px;
-    padding:12px 16px;
-    background:var(--surface-2);
-    border-bottom:1px solid var(--border);
-  }
-
-  .terminal .tbar .d{width:11px;height:11px;border-radius:50%;}
-  .terminal .tbar .d1{background:#ff5f57;}
-  .terminal .tbar .d2{background:#febc2e;}
-  .terminal .tbar .d3{background:#28c840;}
-  .terminal .tbar .t{
-    margin-inline-start:auto;
-    font-family:monospace;
-    font-size:.78rem;
-    color:var(--muted-2);
-    direction:ltr;
-  }
-
-  .terminal pre{
-    margin:0;
-    padding:22px 20px;
-    direction:ltr;
-    text-align:left;
-    overflow-x:auto;
-    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
-    font-size:.82rem;
-    line-height:1.85;
-    color:#a9e6d6;
-  }
-
-  .terminal pre::-webkit-scrollbar{height:8px;}
-  .terminal pre::-webkit-scrollbar-thumb{background:#25313f;border-radius:4px;}
-
-  /* ============ ACCORDION ============ */
-  .acc{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-  }
-
-  details.item{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    overflow:hidden;
-    transition:border-color .2s;
-  }
-
-  details.item[open]{border-color:rgba(45,212,191,.4);}
-
-  details.item summary{
-    cursor:pointer;
-    padding:18px 22px;
-    font-weight:800;
-    font-size:.98rem;
-    list-style:none;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    color:#fff;
-    user-select:none;
-    transition:background .18s;
-  }
-
-  details.item summary::-webkit-details-marker{display:none;}
-
-  details.item summary:hover{background:rgba(45,212,191,.04);}
-
-  details.item summary .chev{
-    margin-inline-start:auto;
-    color:var(--accent);
-    font-size:.85rem;
-    transition:transform .22s;
-  }
-
-  details.item[open] summary .chev{transform:rotate(90deg);}
-
-  details.item summary .tag{
-    font-size:.72rem;
-    font-weight:700;
-    padding:3px 10px;
-    border-radius:999px;
-    background:rgba(56,189,248,.12);
-    color:#7dd3fc;
-    font-family:monospace;
-    direction:ltr;
-  }
-
-  details.item .body{padding:0 14px 16px;}
-
-  /* ============ FUNCTION CARD ============ */
-  .fn-card{
-    background:linear-gradient(160deg,#0d131a,#111922);
-    border:1px solid var(--border-soft);
-    border-radius:12px;
-    padding:22px;
-    margin-top:12px;
-  }
-
-  .fn-card:first-child{margin-top:14px;}
-
-  .fn-title{
-    font-size:1.05rem;
-    font-weight:800;
-    margin-bottom:10px;
-    color:#fff;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-
-  .fn-title code{
-    background:rgba(45,212,191,.1);
-    color:var(--accent);
-    padding:.2em .6em;
-    border-radius:6px;
-    font-size:.95rem;
-    border:1px solid rgba(45,212,191,.22);
-  }
-
-  .fn-desc{
-    color:var(--muted);
-    font-size:.92rem;
-    margin-bottom:14px;
-    line-height:1.95;
-  }
-
-  .fn-ret{
-    color:var(--muted);
-    font-size:.9rem;
-    margin:14px 0 10px;
-    line-height:1.9;
-  }
-
-  .fn-ret strong{color:#c9d4e0;}
-
-  .fn-note{
-    border-radius:10px;
-    padding:11px 16px;
-    font-size:.86rem;
-    margin:12px 0;
-    border-inline-start:3px solid #fbbf24;
-    background:rgba(251,191,36,.06);
-    color:#fde68a;
-    line-height:1.9;
-  }
-
-  .fn-note strong{color:#fff8e1;}
-
-  .fn-note.info{
-    border-inline-start-color:var(--accent);
-    background:rgba(45,212,191,.07);
-    color:#b7f5ec;
-  }
-
-  .fn-note.info strong{color:#e6fffb;}
-
-  .table-wrap.compact{margin:14px 0;border-radius:10px;}
-  .table-wrap.compact table{font-size:.85rem;}
-  .table-wrap.compact thead th{padding:10px 13px;font-size:.8rem;}
-  .table-wrap.compact tbody td{padding:10px 13px;}
-
-  /* ============ EXAMPLE CARD ============ */
-  .ex-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:24px;
-    margin-bottom:18px;
-  }
-
-  .ex-card h3{
-    font-size:1.08rem;
-    font-weight:800;
-    color:#fff;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-
-  .ex-card h3 .badge{
-    font-size:.7rem;
-    font-weight:700;
-    padding:3px 10px;
-    border-radius:999px;
-    background:rgba(56,189,248,.12);
-    color:#7dd3fc;
-    font-family:monospace;
-    direction:ltr;
-  }
-
-  .ex-card p{
-    color:var(--muted);
-    font-size:.92rem;
-    margin-bottom:14px;
-  }
-
-  /* ============ PILL LIST ============ */
-  .pill-list{
-    display:flex;
-    flex-wrap:wrap;
-    gap:9px;
-    margin-top:14px;
-  }
-
-  .pill-list span{
-    padding:5px 13px;
-    border-radius:999px;
-    background:var(--surface-2);
-    border:1px solid var(--border);
-    font-size:.83rem;
-    color:#c9d4e0;
-  }
-
-  .pill-list span b{color:var(--accent);}
-
-  /* ============ FOOTER ============ */
-  footer{
-    border-top:1px solid var(--border-soft);
-    padding:52px 0 40px;
-    text-align:center;
-    position:relative;
-    z-index:1;
-  }
-
-  footer .fbrand{
-    font-size:1.5rem;
-    font-weight:900;
-    letter-spacing:.5px;
-    margin-bottom:14px;
-    background:linear-gradient(135deg,#2dd4bf,#38bdf8);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-  }
-
-  footer p{
-    color:var(--muted-2);
-    font-size:.88rem;
-    margin-bottom:10px;
-  }
-
-  footer a{font-weight:700;}
-
-  footer .fdot{
-    display:inline-block;
-    margin:0 8px;
-    color:var(--border);
-  }
-
-  /* ============ MOBILE ============ */
-  @media(max-width:980px){
-    .nav-links{
-      display:none;
-      position:absolute;
-      top:var(--nav-h);
-      right:0;
-      left:0;
-      flex-direction:column;
-      align-items:stretch;
-      gap:0;
-      font-size:.95rem;
-      background:rgba(8,11,16,.98);
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--border);
-      padding:6px 24px 14px;
-      box-shadow:0 24px 40px -24px rgba(0,0,0,.9);
-    }
-    .nav-links.open{display:flex;}
-    .nav-links a{
-      padding:13px 2px;
-      border-bottom:1px solid var(--border-soft);
-      color:var(--text);
-    }
-    .nav-links a:last-child{border-bottom:0;}
-    .menu-toggle{display:block;}
-    .nav-inner .btn-primary{display:none;}
-  }
-
-  @media(max-width:860px){
-    .two-col{grid-template-columns:1fr;}
-    section{padding:54px 0;}
-    .hero{padding:60px 0 40px;}
-    .wrap{padding:0 18px;}
-  }
-
-  @media(max-width:640px){
-    thead th,
-    tbody td{padding:11px 13px;}
-    .code-box pre,
-    .terminal pre{font-size:.78rem;padding:16px 14px;}
-    .step-card{padding:20px;}
-    .card{padding:20px;}
-    .fn-card{padding:18px;}
-    .ex-card{padding:18px;}
-  }
-</style>
-</head>
-<body>
-
-<!-- ============ NAV ============ -->
-<header class="nav">
-  <div class="wrap nav-inner">
-    <a href="#" class="brand"><span class="dot"></span><span>MathTool</span></a>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="#intro">معرفی</a>
-      <a href="#features">ویژگی‌ها</a>
-      <a href="#install">نصب</a>
-      <a href="#quickstart">شروع سریع</a>
-      <a href="#functions">توابع</a>
-      <a href="#examples">مثال‌ها</a>
-      <a href="#structure">ساختار</a>
-    </nav>
-
-    <a class="btn btn-primary" href="https://github.com/kiarashsardari" target="_blank" rel="noopener">
-      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-      My GitHub
-    </a>
-
-    <button class="menu-toggle" id="menuToggle" aria-label="منو" aria-controls="navLinks" aria-expanded="false">☰</button>
-  </div>
-</header>
-
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap">
-    <div class="pill">جعبه‌ابزار ریاضی پایتون</div>
-    <h1>MathTool</h1>
-    <div class="sub">آمار، جبر خطی و حساب دیفرانسیل در یک ماژول</div>
-    <p class="desc">
-      <strong>جعبه ابزاری سبک، سریع و کاربردی</strong> برای محاسبات آماری، جبر خطی و حساب دیفرانسیل در پایتون.<br>
-      مجموعه‌ای از پرکاربردترین عملیات ریاضی در قالب <strong>توابعی ساده و خوانا</strong> — بدون نیاز به نوشتن کدهای تکراری.
-    </p>
-
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="https://github.com/kiarashsardari/Math-Tool" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        مشاهده مخزن پروژه
-      </a>
-      <a class="btn" href="#quickstart">شروع سریع</a>
-    </div>
-
-    <div class="badges">
-      <img src="https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white&style=for-the-badge" alt="Python">
-      <img src="https://img.shields.io/badge/NumPy-1.20%2B-013243?logo=numpy&style=for-the-badge" alt="NumPy">
-      <img src="https://img.shields.io/badge/SymPy-1.9%2B-3B5526?logo=sympy&style=for-the-badge" alt="SymPy">
-      <img src="https://img.shields.io/badge/Matplotlib-3.5%2B-11557C?logo=matplotlib&style=for-the-badge" alt="Matplotlib">
-    </div>
-  </div>
-</section>
-
-<!-- ============ INTRO ============ -->
-<section id="intro">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">معرفی</span>
-      <h2>MathTool چیست؟</h2>
-    </div>
-
-    <p class="intro-text">
-      <strong>MathTool</strong> یک ماژول سبک و مستقل است که مجموعه‌ای از پرکاربردترین عملیات ریاضی را در قالب توابعی ساده و خوانا در اختیار شما قرار می‌دهد. این ابزار با تکیه بر <strong>NumPy</strong> برای محاسبات برداری، <strong>SymPy</strong> برای محاسبات نمادین و <strong>Matplotlib</strong> برای رسم نمودار، به شما امکان می‌دهد بدون نوشتن کدهای تکراری، به سرعت به نتایج دقیق برسید.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <div class="ico">🎓</div>
-        <h3>دانشجویان و پژوهشگران</h3>
-        <p>مناسب برای محاسبات آماری و ریاضی در حوزه‌های دانشگاهی و پژوهشی.</p>
-      </div>
-      <div class="card">
-        <div class="ico">🤖</div>
-        <h3>مهندسان یادگیری ماشین</h3>
-        <p>برای محاسبه سریع معیارهای خطا مثل MSE و RMSE و ارزیابی مدل.</p>
-      </div>
-      <div class="card">
-        <div class="ico">📊</div>
-        <h3>تحلیلگران داده</h3>
-        <p>برای محاسبات سریع توصیفی، نرمال‌سازی و رسم نمودارهای مقایسه‌ای.</p>
-      </div>
-      <div class="card">
-        <div class="ico">🧪</div>
-        <h3>توسعه‌دهندگان</h3>
-        <p>برای نمونه‌سازی سریع الگوریتم‌ها و آزمون ایده‌های ریاضی.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FEATURES ============ -->
-<section id="features">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">قابلیت‌ها</span>
-      <h2>ویژگی‌ها</h2>
-      <p>هر آنچه برای محاسبات روزمره ریاضی نیاز دارید، در یک ماژول سبک.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="ico">📊</div>
-        <h3>آمار توصیفی</h3>
-        <p>میانگین، واریانس و انحراف معیار برای هر نوع ورودی (لیست، تاپل، ماتریس).</p>
-      </div>
-      <div class="card">
-        <div class="ico">📏</div>
-        <h3>بازه چبیشف</h3>
-        <p>محاسبه بازه <code>[μ − kσ, μ + kσ]</code> با اعتبارسنجی پارامتر k.</p>
-      </div>
-      <div class="card">
-        <div class="ico">⚖️</div>
-        <h3>نرمال‌سازی Z-Score</h3>
-        <p>استانداردسازی داده‌ها با محافظت در برابر تقسیم بر صفر.</p>
-      </div>
-      <div class="card">
-        <div class="ico">🔍</div>
-        <h3>تشخیص نوع ماتریس</h3>
-        <p>شناسایی خودکار ماتریس‌های پوچ، قطری، اسکالر، همانی، مربعی، ستونی و سطری.</p>
-      </div>
-      <div class="card">
-        <div class="ico">🎯</div>
-        <h3>معیارهای خطا</h3>
-        <p>محاسبه MSE و RMSE با بررسی تطابق ابعاد.</p>
-      </div>
-      <div class="card">
-        <div class="ico">➗</div>
-        <h3>عملگر سیگما</h3>
-        <p>جمع‌بندی روی دامنه دلخواه با تابع اختیاری و اعتبارسنجی نوع.</p>
-      </div>
-      <div class="card">
-        <div class="ico">🧾</div>
-        <h3>مشتق‌گیری نمادین</h3>
-        <p>مشتق چندمتغیره با SymPy و تبدیل خودکار رشته به نماد.</p>
-      </div>
-      <div class="card">
-        <div class="ico">📈</div>
-        <h3>رسم مقایسه‌ای</h3>
-        <p>نمودار دو تابع در بازه [1, 10] با برچسب‌گذاری خودکار.</p>
-      </div>
-      <div class="card">
-        <div class="ico">✅</div>
-        <h3>مقایسه ماتریس‌ها</h3>
-        <p>بررسی برابری دقیق دو ماتریس با چک کردن شکل.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ INSTALL ============ -->
-<section id="install">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">راه‌اندازی</span>
-      <h2>نصب و پیش‌نیازها</h2>
-      <p>پیش‌نیاز: پایتون نسخه <strong style="color:#fff">۳.۸</strong> یا بالاتر</p>
-    </div>
-
-    <div class="flow-steps">
-      <span class="st">۱. دکمه <code>&lt;&gt; Code</code></span>
-      <span class="ar">→</span>
-      <span class="st">۲. <code>Download ZIP</code></span>
-      <span class="ar">→</span>
-      <span class="st">۳. استخراج فایل</span>
-    </div>
-
-    <div class="two-col">
-      <div class="step-card">
-        <span class="num">۱</span>
-        <h3>روش ۱ — دانلود ZIP</h3>
-        <p>بدون نیاز به Git. از صفحه‌ی گیت‌هاب پروژه، فایل را به صورت ZIP دانلود و خارج کنید.</p>
-        <a class="btn" href="https://github.com/kiarashsardari/Math-Tool" target="_blank" rel="noopener">دانلود از GitHub</a>
-      </div>
-
-      <div class="step-card">
-        <span class="num">۲</span>
-        <h3>روش ۲ — کلون با Git</h3>
-        <p>اگر Git دارید، مخزن را کلون کنید:</p>
-        <div class="code-box" style="margin-top:8px">
-          <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">bash</span></div>
-          <pre>git clone https://github.com/kiarashsardari/Math-Tool.git
-cd Math-Tool</pre>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:26px" class="step-card">
-      <h3>نصب پکیج‌های موردنیاز</h3>
-      <p>این ماژول تنها به سه کتابخانه نیاز دارد که در فایل <code>requirements.txt</code> تعریف شده‌اند:</p>
-
-      <div class="code-box">
-        <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">requirements.txt</span></div>
-        <pre>numpy>=1.20
+```txt
+numpy>=1.20
 sympy>=1.9
-matplotlib>=3.5</pre>
-      </div>
+matplotlib>=3.5
+```
 
-      <p style="margin-top:18px">برای نصب تمام پیش‌نیازها، در ریشهٔ پروژه اجرا کنید:</p>
-      <div class="code-box">
-        <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">bash</span></div>
-        <pre>pip install -r requirements.txt</pre>
-      </div>
+برای نصب تمام پیش‌نیازها، در ریشهٔ پروژه اجرا کنید:
 
-      <p style="margin-top:18px">سپس فایل <code>math_tool.py</code> را در کنار پروژه خود قرار دهید یا در مسیر <code>PYTHONPATH</code> کپی کنید. نیازی به نصب پکیج جداگانه‌ای نیست.</p>
+```bash
+pip install -r requirements.txt
+```
 
-      <div class="note warn">
-        💡 در صورت نیاز می‌توانید ابتدا <code>pip</code> را به‌روزرسانی کنید:
-        <div class="code-box" style="margin-top:10px">
-          <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">bash</span></div>
-          <pre>python -m pip install --upgrade pip</pre>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+سپس فایل `math_tool.py` را در کنار پروژه خود قرار دهید یا در مسیر `PYTHONPATH` کپی کنید. نیازی به نصب پکیج جداگانه‌ای نیست.
 
-<!-- ============ QUICKSTART ============ -->
-<section id="quickstart">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">شروع</span>
-      <h2>شروع سریع</h2>
-      <p>چند خط کد برای آشنایی با پرکاربردترین توابع.</p>
-    </div>
+> 💡 در صورت نیاز می‌توانید ابتدا `pip` را به‌روزرسانی کنید:
+>
+> ```bash
+> python -m pip install --upgrade pip
+> ```
 
-    <div class="code-box">
-      <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-      <pre>from math_tool import *
+---
+
+## 🚀 شروع سریع
+
+```python
+from math_tool import *
 
 # داده نمونه
 data = [10, 20, 30, 40, 50]
@@ -1077,541 +135,414 @@ print(rmse(err))         # 0.6123724356957945
 import sympy as sp
 x = sp.Symbol('x')
 f = 2*x**2 + 3*x - 3
-print(derivative(f, 'x'))  # [4*x + 3]</pre>
-    </div>
-  </div>
-</section>
+print(derivative(f, 'x'))  # [4*x + 3]
+```
 
-<!-- ============ FUNCTIONS ============ -->
-<section id="functions">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">API</span>
-      <h2>مستندات کامل توابع</h2>
-      <p>مرجع کامل توابع موجود در <code>math_tool.py</code> به‌همراه پارامترها و مثال.</p>
-    </div>
+---
 
-    <div class="acc">
+## 📚 مستندات کامل توابع
 
-      <!-- ==== 1. HELPERS ==== -->
-      <details class="item" open>
-        <summary>
-          <span class="tag">1. helpers</span>
-          ابزارهای کمکی
-          <span class="chev">▸</span>
-        </summary>
-        <div class="body">
+### 1. ابزارهای کمکی
 
-          <div class="fn-card">
-            <div class="fn-title"><code>is_empty(x)</code></div>
-            <p class="fn-desc">بررسی می‌کند آیا ورودی هیچ عنصری ندارد.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def is_empty(x)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody>
-                  <tr><td><code>x</code></td><td>any</td><td>هر نوع داده‌ای که قابل تبدیل به <code>numpy.ndarray</code> باشد</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>bool</code> — مقدار <code>True</code> اگر آرایه بدون عنصر باشد.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; is_empty([])
+#### 🔹 `is_empty(x)`
+
+بررسی می‌کند آیا ورودی هیچ عنصری ندارد.
+
+```python
+def is_empty(x)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `x` | any | هر نوع داده‌ای که قابل تبدیل به `numpy.ndarray` باشد |
+
+**بازگشتی:** `bool` — مقدار `True` اگر آرایه بدون عنصر باشد.
+
+```python
+>>> is_empty([])
 True
-&gt;&gt;&gt; is_empty([1, 2, 3])
-False</pre>
-            </div>
-          </div>
+>>> is_empty([1, 2, 3])
+False
+```
 
-          <div class="fn-card">
-            <div class="fn-title"><code>flat_and_array(x)</code></div>
-            <p class="fn-desc">ورودی را به یک آرایه NumPy یک‌بعدی (تخت) تبدیل می‌کند. این تابع به‌طور گسترده در تمام توابع دیگر استفاده می‌شود.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def flat_and_array(x)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody>
-                  <tr><td><code>x</code></td><td>list | tuple | ndarray</td><td>داده ورودی با هر ابعادی</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>numpy.ndarray</code> — آرایه‌ای یک‌بعدی از عناصر.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; flat_and_array([[1, 2], [3, 4]])
-array([1, 2, 3, 4])</pre>
-            </div>
-          </div>
+---
 
-        </div>
-      </details>
+#### 🔹 `flat_and_array(x)`
 
-      <!-- ==== 2. DESCRIPTIVE STATS ==== -->
-      <details class="item">
-        <summary>
-          <span class="tag">2. stats</span>
-          آمار توصیفی
-          <span class="chev">▸</span>
-        </summary>
-        <div class="body">
+ورودی را به یک آرایه NumPy یک‌بعدی (تخت) تبدیل می‌کند. این تابع به‌طور گسترده در تمام توابع دیگر استفاده می‌شود.
 
-          <div class="fn-card">
-            <div class="fn-title"><code>loc(nums)</code></div>
-            <p class="fn-desc">میانگین حسابی (Location / Mean) عناصر را محاسبه می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def loc(nums)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody><tr><td><code>nums</code></td><td>array-like</td><td>مجموعه اعداد ورودی</td></tr></tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>float | None</code> — میانگین، یا <code>None</code> برای ورودی خالی.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; loc([1, 2, 3, 4, 5])
+```python
+def flat_and_array(x)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `x` | list \| tuple \| ndarray | داده ورودی با هر ابعادی |
+
+**بازگشتی:** `numpy.ndarray` — آرایه‌ای یک‌بعدی از عناصر.
+
+```python
+>>> flat_and_array([[1, 2], [3, 4]])
+array([1, 2, 3, 4])
+```
+
+---
+
+### 2. آمار توصیفی
+
+#### 🔹 `loc(nums)`
+
+میانگین حسابی (Location / Mean) عناصر را محاسبه می‌کند.
+
+```python
+def loc(nums)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `nums` | array-like | مجموعه اعداد ورودی |
+
+**بازگشتی:** `float | None` — میانگین، یا `None` برای ورودی خالی.
+
+```python
+>>> loc([1, 2, 3, 4, 5])
 3.0
-&gt;&gt;&gt; loc([])
-None</pre>
-            </div>
-          </div>
+>>> loc([])
+None
+```
 
-          <div class="fn-card">
-            <div class="fn-title"><code>variance(nums)</code></div>
-            <p class="fn-desc">واریانس <strong>جامعه</strong> (تقسیم بر n) را محاسبه می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def variance(nums)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody><tr><td><code>nums</code></td><td>array-like</td><td>مجموعه اعداد ورودی</td></tr></tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>float | None</code> — واریانس، یا <code>None</code> برای ورودی خالی.</p>
-            <div class="fn-note">
-              <strong>توجه:</strong> این واریانس از نوع جامعه است (تقسیم بر <code>n</code>)، نه نمونه (تقسیم بر <code>n-1</code>).
-            </div>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; variance([1, 2, 3, 4, 5])
-2.0</pre>
-            </div>
-          </div>
+---
 
-          <div class="fn-card">
-            <div class="fn-title"><code>scale(nums)</code></div>
-            <p class="fn-desc">انحراف معیار (Standard Deviation) را به‌عنوان جذر واریانس محاسبه می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def scale(nums)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody><tr><td><code>nums</code></td><td>array-like</td><td>مجموعه اعداد ورودی</td></tr></tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>float | None</code> — انحراف معیار، یا <code>None</code> برای ورودی خالی.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; scale([2, 4, 4, 4, 5, 5, 7, 9])
-2.0</pre>
-            </div>
-          </div>
+#### 🔹 `variance(nums)`
 
-        </div>
-      </details>
+واریانس **جامعه** (تقسیم بر n) را محاسبه می‌کند.
 
-      <!-- ==== 3. CHEBYSHEV & NORM ==== -->
-      <details class="item">
-        <summary>
-          <span class="tag">3. chebyshev</span>
-          بازه چبیشف و نرمال‌سازی
-          <span class="chev">▸</span>
-        </summary>
-        <div class="body">
+```python
+def variance(nums)
+```
 
-          <div class="fn-card">
-            <div class="fn-title"><code>chebyshev(nums, k)</code></div>
-            <p class="fn-desc">بازه چبیشف را به‌صورت <code>[μ − kσ, μ + kσ]</code> محاسبه می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def chebyshev(nums, k)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody>
-                  <tr><td><code>nums</code></td><td>array-like</td><td>مجموعه اعداد ورودی</td></tr>
-                  <tr><td><code>k</code></td><td>int | float</td><td>ضریب بازه (باید بزرگ‌تر از صفر باشد)</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>tuple[float, float] | None</code> — کران پایین و بالا، یا <code>None</code> برای ورودی خالی.</p>
-            <p class="fn-ret"><strong>خطاها:</strong> <code>ValueError</code> اگر <code>k ≤ 0</code>.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; chebyshev([1, 2, 3, 4, 5], 2)
-(0.1715728752538097, 5.82842712474619)</pre>
-            </div>
-            <div class="fn-note info">
-              💡 اگر انحراف معیار صفر باشد، هر دو کران برابر میانگین خواهند بود.
-            </div>
-          </div>
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `nums` | array-like | مجموعه اعداد ورودی |
 
-          <div class="fn-card">
-            <div class="fn-title"><code>norm(x_s)</code></div>
-            <p class="fn-desc">نرمال‌سازی Z-Score را انجام می‌دهد و هر مقدار را به <code>(x − μ) / σ</code> تبدیل می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def norm(x_s)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody><tr><td><code>x_s</code></td><td>array-like</td><td>مجموعه اعداد ورودی</td></tr></tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>ndarray | None</code> — آرایه نرمال‌شده یا <code>None</code> برای ورودی خالی.</p>
-            <div class="fn-note info">
-              💡 اگر انحراف معیار صفر باشد، آرایه اصلی بدون تغییر بازگردانده می‌شود.
-            </div>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; norm([1, 2, 3, 4, 5])
-array([-1.41421356, -0.70710678,  0.        ,  0.70710678,  1.41421356])</pre>
-            </div>
-          </div>
+**بازگشتی:** `float | None` — واریانس، یا `None` برای ورودی خالی.
 
-        </div>
-      </details>
+> ⚠️ **توجه:** این واریانس از نوع جامعه است (تقسیم بر `n`)، نه نمونه (تقسیم بر `n-1`).
 
-      <!-- ==== 4. MATRIX DETECT ==== -->
-      <details class="item">
-        <summary>
-          <span class="tag">4. matrix</span>
-          تشخیص نوع ماتریس
-          <span class="chev">▸</span>
-        </summary>
-        <div class="body">
+```python
+>>> variance([1, 2, 3, 4, 5])
+2.0
+```
 
-          <div class="fn-card">
-            <div class="fn-title"><code>detect_matrix(M)</code></div>
-            <p class="fn-desc">نوع ماتریس را به‌همراه ابعاد آن تشخیص می‌دهد.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def detect_matrix(M)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody><tr><td><code>M</code></td><td>array-like</td><td>ماتریس یا آرایه ورودی</td></tr></tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>tuple[str, tuple] | tuple[None, tuple]</code></p>
-            <ul style="color:var(--muted);font-size:.9rem;margin:6px 0 12px;padding-inline-start:22px;line-height:1.95">
-              <li>عضو اول: نوع ماتریس (رشته) یا <code>None</code> اگر آرایه خالی باشد.</li>
-              <li>عضو دوم: ابعاد ماتریس به‌صورت tuple.</li>
-            </ul>
+---
 
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody>
-                  <tr><td><code>'null'</code></td><td>تمام درایه‌ها صفر</td></tr>
-                  <tr><td><code>'rectangular'</code></td><td>ماتریس مستطیلی عمومی</td></tr>
-                  <tr><td><code>'square'</code></td><td>ماتریس مربعی غیرقطری</td></tr>
-                  <tr><td><code>'diagonal'</code></td><td>قطری با درایه‌های قطری ناهمگون</td></tr>
-                  <tr><td><code>'scalar'</code></td><td>قطری با تمام درایه‌های قطری مساوی</td></tr>
-                  <tr><td><code>'identity'</code></td><td>قطری با درایه‌های قطری برابر ۱</td></tr>
-                  <tr><td><code>'column'</code></td><td>ماتریس ستونی (n×1)</td></tr>
-                  <tr><td><code>'row'</code></td><td>ماتریس سطری (1×n)</td></tr>
-                </tbody>
-              </table>
-            </div>
+#### 🔹 `scale(nums)`
 
-            <p class="fn-ret"><strong>خطاها:</strong> <code>ValueError</code> اگر آرایه بیش از دو بعد داشته باشد.</p>
+انحراف معیار (Standard Deviation) را به‌عنوان جذر واریانس محاسبه می‌کند.
 
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; detect_matrix([[1, 0, 0], [0, 2, 0], [0, 0, 3]])
+```python
+def scale(nums)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `nums` | array-like | مجموعه اعداد ورودی |
+
+**بازگشتی:** `float | None` — انحراف معیار، یا `None` برای ورودی خالی.
+
+```python
+>>> scale([2, 4, 4, 4, 5, 5, 7, 9])
+2.0
+```
+
+---
+
+### <a id="chebyshev"></a>3. بازه چبیشف و نرمال‌سازی
+
+#### 🔹 `chebyshev(nums, k)`
+
+بازه چبیشف را به‌صورت `[μ − kσ, μ + kσ]` محاسبه می‌کند.
+
+```python
+def chebyshev(nums, k)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `nums` | array-like | مجموعه اعداد ورودی |
+| `k` | int \| float | ضریب بازه (باید بزرگ‌تر از صفر باشد) |
+
+**بازگشتی:** `tuple[float, float] | None` — کران پایین و بالا، یا `None` برای ورودی خالی.
+
+**خطاها:** `ValueError` اگر `k ≤ 0`.
+
+```python
+>>> chebyshev([1, 2, 3, 4, 5], 2)
+(0.1715728752538097, 5.82842712474619)
+```
+
+> 💡 اگر انحراف معیار صفر باشد، هر دو کران برابر میانگین خواهند بود.
+
+---
+
+#### 🔹 `norm(x_s)`
+
+نرمال‌سازی Z-Score را انجام می‌دهد و هر مقدار را به `(x − μ) / σ` تبدیل می‌کند.
+
+```python
+def norm(x_s)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `x_s` | array-like | مجموعه اعداد ورودی |
+
+**بازگشتی:** `ndarray | None` — آرایه نرمال‌شده یا `None` برای ورودی خالی.
+
+> 💡 اگر انحراف معیار صفر باشد، آرایه اصلی بدون تغییر بازگردانده می‌شود.
+
+```python
+>>> norm([1, 2, 3, 4, 5])
+array([-1.41421356, -0.70710678,  0.        ,  0.70710678,  1.41421356])
+```
+
+---
+
+### 4. تشخیص نوع ماتریس
+
+#### 🔹 `detect_matrix(M)`
+
+نوع ماتریس را به‌همراه ابعاد آن تشخیص می‌دهد.
+
+```python
+def detect_matrix(M)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `M` | array-like | ماتریس یا آرایه ورودی |
+
+**بازگشتی:** `tuple[str, tuple] | tuple[None, tuple]`
+
+- عضو اول: نوع ماتریس (رشته) یا `None` اگر آرایه خالی باشد.
+- عضو دوم: ابعاد ماتریس به‌صورت tuple.
+
+**انواع قابل تشخیص:**
+
+| نوع | توضیح |
+|-----|--------|
+| `'null'` | تمام درایه‌ها صفر |
+| `'rectangular'` | ماتریس مستطیلی عمومی |
+| `'square'` | ماتریس مربعی غیرقطری |
+| `'diagonal'` | قطری با درایه‌های قطری ناهمگون |
+| `'scalar'` | قطری با تمام درایه‌های قطری مساوی |
+| `'identity'` | قطری با درایه‌های قطری برابر ۱ |
+| `'column'` | ماتریس ستونی (n×1) |
+| `'row'` | ماتریس سطری (1×n) |
+
+**خطاها:** `ValueError` اگر آرایه بیش از دو بعد داشته باشد.
+
+```python
+>>> detect_matrix([[1, 0, 0], [0, 2, 0], [0, 0, 3]])
 ('diagonal', (3, 3))
 
-&gt;&gt;&gt; detect_matrix([[1, 0], [0, 1]])
+>>> detect_matrix([[1, 0], [0, 1]])
 ('identity', (2, 2))
 
-&gt;&gt;&gt; detect_matrix([1, 2, 3, 4])
+>>> detect_matrix([1, 2, 3, 4])
 ('row', (1, 4))
 
-&gt;&gt;&gt; detect_matrix([[0, 0], [0, 0]])
-('null', (2, 2))</pre>
-            </div>
-          </div>
+>>> detect_matrix([[0, 0], [0, 0]])
+('null', (2, 2))
+```
 
-        </div>
-      </details>
+---
 
-      <!-- ==== 5. ERROR METRICS ==== -->
-      <details class="item">
-        <summary>
-          <span class="tag">5. metrics</span>
-          معیارهای خطا
-          <span class="chev">▸</span>
-        </summary>
-        <div class="body">
+### 5. معیارهای خطا
 
-          <div class="fn-card">
-            <div class="fn-title"><code>mse(y_true_array, y_pred_array)</code></div>
-            <p class="fn-desc">میانگین مربع خطا (Mean Squared Error) را محاسبه می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def mse(y_true_array, y_pred_array)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody>
-                  <tr><td><code>y_true_array</code></td><td>array-like</td><td>مقادیر واقعی</td></tr>
-                  <tr><td><code>y_pred_array</code></td><td>array-like</td><td>مقادیر پیش‌بینی‌شده</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>float | None</code> — مقدار MSE، یا <code>None</code> اگر ابعاد ناهمخوان یا آرایه خالی باشند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; mse([3, -0.5, 2, 7], [2.5, 0.0, 2, 8])
-0.375</pre>
-            </div>
-          </div>
+#### 🔹 `mse(y_true_array, y_pred_array)`
 
-          <div class="fn-card">
-            <div class="fn-title"><code>rmse(mse_value)</code></div>
-            <p class="fn-desc">جذر میانگین مربع خطا (Root Mean Squared Error) را از مقدار MSE محاسبه می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def rmse(mse_value)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody><tr><td><code>mse_value</code></td><td>float | None</td><td>مقدار MSE که قبلاً محاسبه شده</td></tr></tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>float | None</code> — مقدار RMSE، یا <code>None</code> اگر ورودی <code>None</code> باشد.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; rmse(0.375)
-0.6123724356957945</pre>
-            </div>
-          </div>
+میانگین مربع خطا (Mean Squared Error) را محاسبه می‌کند.
 
-        </div>
-      </details>
+```python
+def mse(y_true_array, y_pred_array)
+```
 
-      <!-- ==== 6. SIGMA & DERIVATIVE ==== -->
-      <details class="item">
-        <summary>
-          <span class="tag">6. symbolic</span>
-          سیگما و مشتق
-          <span class="chev">▸</span>
-        </summary>
-        <div class="body">
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `y_true_array` | array-like | مقادیر واقعی |
+| `y_pred_array` | array-like | مقادیر پیش‌بینی‌شده |
 
-          <div class="fn-card">
-            <div class="fn-title"><code>sigma(i, n, f=lambda x: x)</code></div>
-            <p class="fn-desc">عملگر جمع (Σ) را از <code>i</code> تا <code>n</code> (شامل هر دو) برای تابع دلخواه محاسبه می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def sigma(i, n, f=lambda x: x)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody>
-                  <tr><td><code>i</code></td><td>int</td><td>کران پایین (شامل)</td></tr>
-                  <tr><td><code>n</code></td><td>int</td><td>کران بالا (شامل)</td></tr>
-                  <tr><td><code>f</code></td><td>callable</td><td>تابع جمله عمومی، پیش‌فرض <code>f(x) = x</code></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> مجموع مقادیر <code>f(j)</code> برای <code>j ∈ [i, n]</code>.</p>
-            <p class="fn-ret"><strong>خطاها:</strong> <code>TypeError</code> اگر <code>i</code> یا <code>n</code> عدد صحیح نباشند یا از نوع <code>bool</code> باشند.</p>
-            <div class="fn-note">
-              <strong>توجه:</strong> <code>bool</code> به‌عنوان عدد صحیح پذیرفته نمی‌شود تا از سوءاستفاده جلوگیری شود.
-            </div>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; sigma(0, 10, lambda x: 2*x**2 + 3*x - 3)
+**بازگشتی:** `float | None` — مقدار MSE، یا `None` اگر ابعاد ناهمخوان یا آرایه خالی باشند.
+
+```python
+>>> mse([3, -0.5, 2, 7], [2.5, 0.0, 2, 8])
+0.375
+```
+
+---
+
+#### 🔹 `rmse(mse_value)`
+
+جذر میانگین مربع خطا (Root Mean Squared Error) را از مقدار MSE محاسبه می‌کند.
+
+```python
+def rmse(mse_value)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `mse_value` | float \| None | مقدار MSE که قبلاً محاسبه شده |
+
+**بازگشتی:** `float | None` — مقدار RMSE، یا `None` اگر ورودی `None` باشد.
+
+```python
+>>> rmse(0.375)
+0.6123724356957945
+```
+
+---
+
+### 6. سیگما و مشتق
+
+#### 🔹 `sigma(i, n, f=lambda x: x)`
+
+عملگر جمع (Σ) را از `i` تا `n` (شامل هر دو) برای تابع دلخواه محاسبه می‌کند.
+
+```python
+def sigma(i, n, f=lambda x: x)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `i` | int | کران پایین (شامل) |
+| `n` | int | کران بالا (شامل) |
+| `f` | callable | تابع جمله عمومی، پیش‌فرض `f(x) = x` |
+
+**بازگشتی:** مجموع مقادیر `f(j)` برای `j ∈ [i, n]`.
+
+**خطاها:** `TypeError` اگر `i` یا `n` عدد صحیح نباشند یا از نوع `bool` باشند.
+
+> ⚠️ `bool` به‌عنوان عدد صحیح پذیرفته نمی‌شود تا از سوءاستفاده جلوگیری شود.
+
+```python
+>>> sigma(0, 10, lambda x: 2*x**2 + 3*x - 3)
 902
-&gt;&gt;&gt; sigma(1, 5)  # 1 + 2 + 3 + 4 + 5
-15</pre>
-            </div>
-          </div>
+>>> sigma(1, 5)  # 1 + 2 + 3 + 4 + 5
+15
+```
 
-          <div class="fn-card">
-            <div class="fn-title"><code>derivative(f, *symbols)</code></div>
-            <p class="fn-desc">مشتق‌های جزئی یک عبارت نمادین را نسبت به نمادهای مشخص‌شده محاسبه می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def derivative(f, *symbols)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody>
-                  <tr><td><code>f</code></td><td>SymPy expression</td><td>عبارت نمادین برای مشتق‌گیری</td></tr>
-                  <tr><td><code>*symbols</code></td><td>Symbol | str</td><td>نمادها یا نام نمادها (رشته)</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>list[SymPy expression]</code> — لیست مشتق‌ها به‌ترتیب نمادها.</p>
-            <div class="fn-note info">
-              💡 اگر رشته بدهید، به‌طور خودکار به <code>Symbol</code> تبدیل می‌شود.
-            </div>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; import sympy as sp
-&gt;&gt;&gt; x = sp.Symbol('x')
-&gt;&gt;&gt; f = 2*x**2 + 3*x - 3
-&gt;&gt;&gt; derivative(f, 'x')
+---
+
+#### 🔹 `derivative(f, *symbols)`
+
+مشتق‌های جزئی یک عبارت نمادین را نسبت به نمادهای مشخص‌شده محاسبه می‌کند.
+
+```python
+def derivative(f, *symbols)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `f` | SymPy expression | عبارت نمادین برای مشتق‌گیری |
+| `*symbols` | Symbol \| str | نمادها یا نام نمادها (رشته) |
+
+**بازگشتی:** `list[SymPy expression]` — لیست مشتق‌ها به‌ترتیب نمادها.
+
+> 💡 اگر رشته بدهید، به‌طور خودکار به `Symbol` تبدیل می‌شود.
+
+```python
+>>> import sympy as sp
+>>> x = sp.Symbol('x')
+>>> f = 2*x**2 + 3*x - 3
+>>> derivative(f, 'x')
 [4*x + 3]
 
-&gt;&gt;&gt; derivative(f, 'x', 'y')
-[4*x + 3, 0]</pre>
-            </div>
-          </div>
+>>> derivative(f, 'x', 'y')
+[4*x + 3, 0]
+```
 
-        </div>
-      </details>
+---
 
-      <!-- ==== 7. PLOT ==== -->
-      <details class="item">
-        <summary>
-          <span class="tag">7. plot</span>
-          رسم نمودار
-          <span class="chev">▸</span>
-        </summary>
-        <div class="body">
+### 7. رسم نمودار
 
-          <div class="fn-card">
-            <div class="fn-title"><code>comparison_plot(f_true, f_pred)</code></div>
-            <p class="fn-desc">نمودار مقایسه‌ای دو تابع را در بازه <code>x ∈ [1, 10]</code> با ۱۰۰ نقطه رسم می‌کند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def comparison_plot(f_true, f_pred)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody>
-                  <tr><td><code>f_true</code></td><td>callable</td><td>تابع مرجع (برچسب <code>truth</code>)</td></tr>
-                  <tr><td><code>f_pred</code></td><td>callable</td><td>تابع پیش‌بینی (برچسب <code>guess</code>)</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>None</code> — نمودار را نمایش می‌دهد.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>comparison_plot(
+#### 🔹 `comparison_plot(f_true, f_pred)`
+
+نمودار مقایسه‌ای دو تابع را در بازه `x ∈ [1, 10]` با ۱۰۰ نقطه رسم می‌کند.
+
+```python
+def comparison_plot(f_true, f_pred)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `f_true` | callable | تابع مرجع (برچسب `truth`) |
+| `f_pred` | callable | تابع پیش‌بینی (برچسب `guess`) |
+
+**بازگشتی:** `None` — نمودار را نمایش می‌دهد.
+
+```python
+comparison_plot(
     f_true=lambda x: 2*x**2 + 3*x - 3,
     f_pred=lambda x: 2*x**2 + 2*x - 3
-)</pre>
-            </div>
-          </div>
+)
+```
 
-        </div>
-      </details>
+---
 
-      <!-- ==== 8. MATRIX EQUAL ==== -->
-      <details class="item">
-        <summary>
-          <span class="tag">8. equal</span>
-          مقایسه ماتریس‌ها
-          <span class="chev">▸</span>
-        </summary>
-        <div class="body">
+### <a id="matrix-equal"></a>8. مقایسه ماتریس‌ها
 
-          <div class="fn-card">
-            <div class="fn-title"><code>matrix_equal(A, B)</code></div>
-            <p class="fn-desc">بررسی می‌کند آیا دو ماتریس از نظر شکل و محتوا کاملاً یکسان هستند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>def matrix_equal(A, B)</pre>
-            </div>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody>
-                  <tr><td><code>A</code></td><td>array-like</td><td>ماتریس اول</td></tr>
-                  <tr><td><code>B</code></td><td>array-like</td><td>ماتریس دوم</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="fn-ret"><strong>بازگشتی:</strong> <code>bool</code> — <code>True</code> اگر شکل و تمام درایه‌ها برابر باشند، در غیر این صورت <code>False</code>.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>&gt;&gt;&gt; matrix_equal([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+#### 🔹 `matrix_equal(A, B)`
+
+بررسی می‌کند آیا دو ماتریس از نظر شکل و محتوا کاملاً یکسان هستند.
+
+```python
+def matrix_equal(A, B)
+```
+
+| پارامتر | نوع | توضیح |
+|---------|-----|--------|
+| `A` | array-like | ماتریس اول |
+| `B` | array-like | ماتریس دوم |
+
+**بازگشتی:** `bool` — `True` اگر شکل و تمام درایه‌ها برابر باشند، در غیر این صورت `False`.
+
+```python
+>>> matrix_equal([[1, 2], [3, 4]], [[1, 2], [3, 4]])
 True
-&gt;&gt;&gt; matrix_equal([[1, 2]], [[1, 2], [3, 4]])
-False</pre>
-            </div>
-          </div>
+>>> matrix_equal([[1, 2]], [[1, 2], [3, 4]])
+False
+```
 
-        </div>
-      </details>
+---
 
-    </div>
-  </div>
-</section>
+## <a id="examples"></a>💡 مثال‌های ترکیبی
 
-<!-- ============ EXAMPLES ============ -->
-<section id="examples">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">کاربردی</span>
-      <h2>مثال‌های ترکیبی</h2>
-      <p>چند سناریوی واقعی برای استفاده از توابع MathTool.</p>
-    </div>
+### مثال ۱ — تحلیل آماری یک مجموعه داده
 
-    <div class="ex-card">
-      <h3>مثال ۱ — تحلیل آماری یک مجموعه داده <span class="badge">stats</span></h3>
-      <p>ترکیب توابع آمار توصیفی، بازه چبیشف و نرمال‌سازی برای تحلیل نمرات.</p>
-      <div class="code-box">
-        <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-        <pre>from math_tool import *
+```python
+from math_tool import *
 
 scores = [78, 85, 90, 92, 88, 75, 95, 82, 79, 91]
 
-mean       = loc(scores)
-var        = variance(scores)
-std        = scale(scores)
-interval   = chebyshev(scores, 2)
+mean     = loc(scores)
+var      = variance(scores)
+std      = scale(scores)
+interval = chebyshev(scores, 2)
 normalized = norm(scores)
 
 print(f"میانگین: {mean:.2f}")
 print(f"انحراف معیار: {std:.2f}")
 print(f"بازه چبیشف (k=2): [{interval[0]:.2f}, {interval[1]:.2f}]")
-print(f"داده‌های نرمال‌شده: {normalized.round(2)}")</pre>
-      </div>
-    </div>
+print(f"داده‌های نرمال‌شده: {normalized.round(2)}")
+```
 
-    <div class="ex-card">
-      <h3>مثال ۲ — ارزیابی یک مدل رگرسیون <span class="badge">metrics</span></h3>
-      <p>محاسبه MSE و RMSE برای سنجش دقت پیش‌بینی مدل.</p>
-      <div class="code-box">
-        <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-        <pre>from math_tool import *
+---
+
+### مثال ۲ — ارزیابی یک مدل رگرسیون
+
+```python
+from math_tool import *
 
 y_true = [2.5, 3.1, 4.8, 5.2, 6.0]
 y_pred = [2.4, 3.3, 4.5, 5.5, 5.9]
@@ -1620,16 +551,15 @@ mse_val  = mse(y_true, y_pred)
 rmse_val = rmse(mse_val)
 
 print(f"MSE  = {mse_val:.4f}")
-print(f"RMSE = {rmse_val:.4f}")</pre>
-      </div>
-    </div>
+print(f"RMSE = {rmse_val:.4f}")
+```
 
-    <div class="ex-card">
-      <h3>مثال ۳ — مشتق‌گیری و رسم نمودار <span class="badge">symbolic</span></h3>
-      <p>محاسبه مشتق نمادین با SymPy و رسم مقایسه با تابع اصلی.</p>
-      <div class="code-box">
-        <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-        <pre>import sympy as sp
+---
+
+### مثال ۳ — مشتق‌گیری و رسم نمودار
+
+```python
+import sympy as sp
 from math_tool import *
 
 x = sp.Symbol('x')
@@ -1642,86 +572,63 @@ print(derivative(f, 'x'))
 comparison_plot(
     f_true=sp.lambdify(x, f, 'numpy'),
     f_pred=lambda t: t**3 - 3*t**2 + 2*t + 1.5
-)</pre>
-      </div>
-    </div>
+)
+```
 
-    <div class="ex-card">
-      <h3>مثال ۴ — تشخیص نوع ماتریس در عمل <span class="badge">matrix</span></h3>
-      <p>شناسایی خودکار انواع ماتریس با استفاده از <code>detect_matrix</code>.</p>
-      <div class="code-box">
-        <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-        <pre>from math_tool import *
+---
+
+### مثال ۴ — تشخیص نوع ماتریس در عمل
+
+```python
+from math_tool import *
 
 matrices = {
-    "همانی":   [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
-    "اسکالر":  [[5, 0, 0], [0, 5, 0], [0, 0, 5]],
-    "قطری":    [[1, 0, 0], [0, 2, 0], [0, 0, 3]],
-    "پوچ":     [[0, 0], [0, 0]],
-    "ستونی":   [[1], [2], [3]],
-    "سطری":    [[1, 2, 3]],
-    "مستطیلی": [[1, 2, 3], [4, 5, 6]],
+    "همانی":        [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+    "اسکالر":       [[5, 0, 0], [0, 5, 0], [0, 0, 5]],
+    "قطری":         [[1, 0, 0], [0, 2, 0], [0, 0, 3]],
+    "پوچ":          [[0, 0], [0, 0]],
+    "ستونی":        [[1], [2], [3]],
+    "سطری":         [[1, 2, 3]],
+    "مستطیلی":      [[1, 2, 3], [4, 5, 6]],
 }
 
 for name, M in matrices.items():
     typ, shape = detect_matrix(M)
-    print(f"{name:12s} → {typ:12s} {shape}")</pre>
-      </div>
+    print(f"{name:12s} → {typ:12s} {shape}")
+```
 
-      <div class="terminal" style="margin-top:14px">
-        <div class="tbar">
-          <span class="d d1"></span><span class="d d2"></span><span class="d d3"></span>
-          <span class="t">output</span>
-        </div>
-        <pre>همانی        → identity     (3, 3)
+**خروجی:**
+
+```
+همانی        → identity     (3, 3)
 اسکالر       → scalar       (3, 3)
 قطری         → diagonal     (3, 3)
 پوچ          → null         (2, 2)
 ستونی        → column       (3, 1)
 سطری         → row          (1, 3)
-مستطیلی      → rectangular  (2, 3)</pre>
-      </div>
-    </div>
-  </div>
-</section>
+مستطیلی      → rectangular  (2, 3)
+```
 
-<!-- ============ DEMO ============ -->
-<section id="demo">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">دمو</span>
-      <h2>اجرای دمو</h2>
-    </div>
+---
 
-    <p style="text-align:center;color:var(--muted);max-width:700px;margin:0 auto 22px;font-size:.96rem">
-      فایل شامل بلوک <code>if __name__ == "__main__":</code> است که یک دموی کامل از تمام توابع را اجرا می‌کند. برنامه در هر مرحله منتظر فشردن <strong style="color:#fff">Enter</strong> می‌ماند تا فرصت بررسی خروجی هر تابع را داشته باشید. در پایان عبارت <code>bye...</code> نمایش داده می‌شود.
-    </p>
+## 🧪 اجرای دمو
 
-    <div class="code-box" style="max-width:640px;margin:0 auto">
-      <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">bash</span></div>
-      <pre>python math_tool.py</pre>
-    </div>
+فایل شامل بلوک `if __name__ == "__main__":` است که یک دموی کامل از تمام توابع را اجرا می‌کند. برای اجرا:
 
-    <div class="note info" style="max-width:700px;margin:22px auto 0">
-      💡 <strong>نکته:</strong> برای اجرای دمو بدون توقف، می‌توانید تمام خطوط <code>input(...)</code> را حذف یا کامنت کنید.
-    </div>
-  </div>
-</section>
+```bash
+python math_tool.py
+```
 
-<!-- ============ STRUCTURE ============ -->
-<section id="structure">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">سازمان‌دهی</span>
-      <h2>ساختار فایل</h2>
-    </div>
+برنامه در هر مرحله منتظر فشردن **Enter** می‌ماند تا شما فرصت بررسی خروجی هر تابع را داشته باشید. در پایان عبارت `bye...` نمایش داده می‌شود.
 
-    <div class="code-box" style="margin-bottom:22px">
-      <div class="code-bar">
-        <span class="d d1"></span><span class="d d2"></span><span class="d d3"></span>
-        <span class="fn">math_tool.py</span>
-      </div>
-      <pre>requirements.txt
+> 💡 **نکته:** برای اجرای دمو بدون توقف، می‌توانید تمام خطوط `input(...)` را حذف یا کامنت کنید.
+
+---
+
+## 🗂 ساختار فایل
+
+```
+requirements.txt
 math_tool.py
 │
 ├── ابزارهای کمکی
@@ -1750,74 +657,15 @@ math_tool.py
 │   └── derivative(f, *symbols)
 │
 └── رسم نمودار
-    └── comparison_plot(f_true, f_pred)</pre>
-    </div>
+    └── comparison_plot(f_true, f_pred)
+```
 
-    <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:12px">فایل <code>requirements.txt</code></h3>
-    <div class="code-box">
-      <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">requirements.txt</span></div>
-      <pre>numpy>=1.20
+---
+
+### فایل `requirements.txt`
+
+```txt
+numpy>=1.20
 sympy>=1.9
-matplotlib>=3.5</pre>
-    </div>
-
-    <div class="pill-list" style="justify-content:center;margin-top:28px">
-      <span><b>NumPy</b> — محاسبات برداری</span>
-      <span><b>SymPy</b> — محاسبات نمادین</span>
-      <span><b>Matplotlib</b> — رسم نمودار</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="wrap">
-    <div class="fbrand">MathTool</div>
-    <p>
-      جعبه ابزاری سبک، سریع و کاربردی برای محاسبات آماری، جبر خطی و حساب دیفرانسیل
-    </p>
-    <p>
-      <a href="https://github.com/kiarashsardari/Math-Tool" target="_blank" rel="noopener">github.com/kiarashsardari/Math-Tool</a>
-      <span class="fdot">•</span>
-      ساخته‌شده با <code>numpy</code>، <code>sympy</code> و <code>matplotlib</code>
-    </p>
-    <p style="margin-top:18px;color:#4a5563;font-size:.8rem">
-      © 2026 MathTool — Python Math Toolkit
-    </p>
-  </div>
-</footer>
-
-<script>
-  (function () {
-    var toggle = document.getElementById('menuToggle');
-    var links  = document.getElementById('navLinks');
-    if (!toggle || !links) return;
-
-    function closeMenu() {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.textContent = '☰';
-    }
-
-    toggle.addEventListener('click', function () {
-      var isOpen = links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(isOpen));
-      toggle.textContent = isOpen ? '✕' : '☰';
-    });
-
-    links.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', closeMenu);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeMenu();
-    });
-
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 980) closeMenu();
-    });
-  })();
-</script>
-
-</body>
-</html>
+matplotlib>=3.5
+```
