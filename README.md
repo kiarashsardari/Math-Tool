@@ -3,7 +3,7 @@
 </div>
 <div align="center">
 
-**جعبه ابزاری سبک، سریع و کاربردی برای محاسبات آماری، جبر خطی و حساب دیفرانسیل در پایتون**
+**جعبه ابزاری کاربردی برای محاسبات آماری، جبر خطی و حساب دیفرانسیل در پایتون**
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white&style=for-the-badge)
 ![NumPy](https://img.shields.io/badge/NumPy-1.20%2B-013243?logo=numpy&style=for-the-badge)
