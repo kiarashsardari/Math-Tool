@@ -2,7 +2,7 @@
 
 # 🧮 Math-Tool
 
-### کتابخانه جامع ابزارهای ریاضی، آماری و تحلیل داده در پایتون
+### کتابخانه‌ی جامع ابزارهای ریاضی، آماری و تحلیل داده در پایتون
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-Required-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
@@ -33,15 +33,15 @@
 - [📦 نصب و راه‌اندازی](#installation)
 - [🚀 شروع سریع](#quickstart)
 - [📚 مستندات API](#api)
-  - [&lrm;⚙️ Settings](#settings)
-  - [&lrm;∂ derivative](#derivative)
-  - [&lrm;∑ sigma](#sigma)
-  - [&lrm;📊 Stats](#stats)
-  - [&lrm;🔢 Matrix](#matrix)
-  - [&lrm;📐 Metrics](#metrics)
-  - [&lrm;📈 Plots](#plots)
-  - [&lrm;📉 LinearRegression](#linearregression)
-  - [&lrm;🗂️ DataHandler](#datahandler)
+  - [⚙️ Settings](#settings)
+  - [∂ derivative](#derivative)
+  - [∑ sigma](#sigma)
+  - [📊 Stats](#stats)
+  - [🔢 Matrix](#matrix)
+  - [📐 Metrics](#metrics)
+  - [📈 Plots](#plots)
+  - [📉 LinearRegression](#linearregression)
+  - [🗂️ DataHandler](#datahandler)
 - [🧪 اجرای تست‌ها](#tests)
 - [📁 ساختار پروژه](#structure)
 - [🤝 مشارکت](#contributing)
@@ -53,16 +53,16 @@
 <a id="features"></a>
 ## ✨ ویژگی‌های کلیدی
 
-- 🧩 **تخت‌سازی و نرمال‌سازی ورودی**: پذیرش هر ساختار تو در تو (لیست، تاپل، جنریتور، آرایه‌ی نامپای، Series پانداز و…) و تبدیل خودکار به آرایه‌ی یک‌بعدی
-- ∂ **مشتق‌گیری نمادین**: محاسبه‌ی مشتق معمولی و جزئی با پشتیبانی از SymPy
-- ∑ **سیگمای جامع**: پشتیبانی از بازه، لیست، ترکیب دو لیست، دو تابع و عملگر دلخواه (‎+‎، ‎−‎، ‎×‎، ‎÷‎، توان و باقیمانده)
-- 📊 **ابزارهای آماری**: میانگین، واریانس، انحراف معیار، نرمال‌سازی و نامساوی چبیشف
-- 🔢 **تشخیص نوع ماتریس**: شناسایی خودکار ماتریس‌های همانی، قطری، اسکالر، مربعی، سطری، ستونی و تهی
-- 📐 **معیارهای خطا**: محاسبه‌ی MSE و RMSE با پشتیبانی از ورودی‌های نامنظم
-- 📉 **رگرسیون خطی ساده**: ساخت مدل روی دیتافریم، پیش‌بینی و محاسبه‌ی خطای مدل
-- 🗂️ **مدیریت داده**: ساخت دیتاست نمونه و خواندن/ساخت خودکار فایل‌های CSV
-- 📈 **رسم نمودار**: نمودار خطی، پراکندگی و مقایسه‌ی دو تابع
-- 🧪 **تست کامل**: پوشش تست واحد برای تمامی کلاس‌ها و توابع
+- 🧩 **تخت‌سازی و نرمال‌سازی ورودی** — پذیرش هر ساختار تو در تو (لیست، تاپل، جنریتور، آرایه‌ی NumPy، `Series` پانداز و…) و تبدیل خودکار به آرایه‌ی یک‌بعدی
+- ∂ **مشتق‌گیری نمادین** — محاسبه‌ی مشتق معمولی و جزئی با پشتیبانی از SymPy
+- ∑ **سیگمای جامع** — پشتیبانی از بازه، لیست، ترکیب دو لیست، دو تابع و عملگر دلخواه (`+`، `-`، `*`، `/`، `**`، `%`)
+- 📊 **ابزارهای آماری** — میانگین، واریانس، انحراف معیار، نرمال‌سازی و نامساوی چبیشف
+- 🔢 **تشخیص نوع ماتریس** — شناسایی خودکار ماتریس‌های همانی، قطری، اسکالر، مربعی، سطری، ستونی و تهی
+- 📐 **معیارهای خطا** — محاسبه‌ی MSE و RMSE با پشتیبانی از ورودی‌های نامنظم
+- 📉 **رگرسیون خطی ساده** — ساخت مدل روی دیتافریم، پیش‌بینی و محاسبه‌ی خطای مدل
+- 🗂️ **مدیریت داده** — ساخت دیتاست نمونه و خواندن/ساخت خودکار فایل‌های CSV
+- 📈 **رسم نمودار** — نمودار خطی، پراکندگی و مقایسه‌ی دو تابع
+- 🧪 **تست کامل** — پوشش تست واحد برای تمامی کلاس‌ها و توابع
 
 ---
 
@@ -139,11 +139,11 @@ print(total)  # 110
 
 # --- ۴. محاسبات آماری ---
 s = Stats([1, 2, 3, 4, 5])
-print(s.loc())       # 3.0
-print(s.variance())  # 2.0
-print(s.scale())     # 1.4142...
-print(s.norm())      # [-1.414 -0.707 0. 0.707 1.414]
-print(s.chebyshev(2)) # (-1.414, 7.414)
+print(s.loc())         # 3.0
+print(s.variance())    # 2.0
+print(s.scale())       # 1.4142...
+print(s.norm())        # [-1.414 -0.707 0. 0.707 1.414]
+print(s.chebyshev(2))  # (-1.414, 7.414)
 
 # --- ۵. تشخیص نوع ماتریس ---
 print(Matrix([[1, 0], [0, 1]]).detect_matrix())  # ('identity', (2, 2))
@@ -176,7 +176,7 @@ Plots.show_plot([1, 2, 3, 4], [1, 4, 9, 16])
 ---
 
 <a id="settings"></a>
-### &lrm;⚙️ Settings
+### ⚙️ Settings
 
 مدیریت و تخت‌سازی ورودی‌های پیچیده. دیکشنری و مجموعه پذیرفته نمی‌شوند.
 
@@ -192,28 +192,28 @@ Settings([1, 2, [3, (4, 5)], np.array([[6, 7]])]).x
 بررسی خالی بودن ورودی (همه‌ی اعضا `None` یا آرایه‌ی خالی).
 
 ```python
-Settings([None]).is_empty()        # True
-Settings([None, 1]).is_empty()     # False
+Settings([None]).is_empty()      # True
+Settings([None, 1]).is_empty()   # False
 ```
 
 #### `flat_and_array()`
 
-تخت‌سازی کامل و بازگرداندن آرایه‌ی نامپای یک‌بعدی.
+تخت‌سازی کامل و بازگرداندن آرایه‌ی NumPy یک‌بعدی.
 
 #### `is_iter(x)` — استاتیک
 
 بررسی iterable بودن، با استثنای `str`، `dict` و `set`.
 
 ```python
-Settings.is_iter([1, 2])   # True
-Settings.is_iter(12)       # False
-Settings.is_iter("hello")  # False
+Settings.is_iter([1, 2])    # True
+Settings.is_iter(12)        # False
+Settings.is_iter("hello")   # False
 ```
 
 ---
 
 <a id="derivative"></a>
-### &lrm;∂ derivative
+### ∂ derivative
 
 محاسبه‌ی مشتق معمولی یا مشتق جزئی با استفاده از SymPy.
 
@@ -237,26 +237,26 @@ derivative(f, a, b)  # [6*a**2, 6*b]
 ---
 
 <a id="sigma"></a>
-### &lrm;∑ sigma
+### ∑ sigma
 
 سیگمای جامع با پشتیبانی از بازه، لیست، دو لیست، دو تابع و عملگر دلخواه.
 
 #### `sigma(i=None, n=None, f=identity, g=identity, operator=None)`
 
-##### حالت ۱: بازه با یک تابع
+**حالت ۱: بازه با یک تابع**
 
 ```python
 sigma(0, 10, lambda i: 2*i)   # 110
 ```
 
-##### حالت ۲: لیست با یک تابع
+**حالت ۲: لیست با یک تابع**
 
 ```python
-sigma([1, 2, 3, 4], f=lambda x: 2*x)   # 20
-sigma(n=[1, 2, 3, 4], g=lambda x: 2*x) # 20
+sigma([1, 2, 3, 4], f=lambda x: 2*x)     # 20
+sigma(n=[1, 2, 3, 4], g=lambda x: 2*x)   # 20
 ```
 
-##### حالت ۳: دو لیست با عملگر و یک تابع
+**حالت ۳: دو لیست با عملگر و یک تابع**
 
 ```python
 i = [1, 2, 3, 4, 5]
@@ -264,7 +264,7 @@ n = [6, 7, 8, 9, 10]
 sigma(i, n, f=lambda x: 2*x, operator='-')   # -50
 ```
 
-##### حالت ۴: دو لیست با دو تابع و عملگر
+**حالت ۴: دو لیست با دو تابع و عملگر**
 
 ```python
 sigma(
@@ -281,7 +281,7 @@ sigma(
 ---
 
 <a id="stats"></a>
-### &lrm;📊 Stats
+### 📊 Stats
 
 ابزارهای آماری پایه روی هر ورودی قابل‌تخت‌سازی.
 
@@ -317,7 +317,7 @@ s.chebyshev(2)   # (-1.414, 7.414)
 ---
 
 <a id="matrix"></a>
-### &lrm;🔢 Matrix
+### 🔢 Matrix
 
 تشخیص نوع ماتریس و بررسی تساوی.
 
@@ -325,7 +325,7 @@ s.chebyshev(2)   # (-1.414, 7.414)
 
 #### `detect_matrix()`
 
-خروجی: تاپل (نوع، shape)
+خروجی: تاپل `(نوع، shape)`
 
 | نوع | توضیح |
 |---|---|
@@ -355,7 +355,7 @@ Matrix([[1, 2], [3, 4]]).matrix_equal([[1, 2], [3, 4]])  # True
 ---
 
 <a id="metrics"></a>
-### &lrm;📐 Metrics
+### 📐 Metrics
 
 معیارهای خطا.
 
@@ -377,7 +377,7 @@ Metrics.rmse(0.375)  # 0.6123...
 ---
 
 <a id="plots"></a>
-### &lrm;📈 Plots
+### 📈 Plots
 
 رسم نمودارهای آماده با Matplotlib.
 
@@ -407,15 +407,15 @@ Plots.comparison_plot(
 ---
 
 <a id="linearregression"></a>
-### &lrm;📉 LinearRegression
+### 📉 LinearRegression
 
 رگرسیون خطی ساده با فرمول بسته روی دیتافریم.
 
 #### `LinearRegression(df, x_name, y_name)`
 
-مدل به‌فرم y = θ₀ + θ₁·x
+مدل به‌فرم `y = θ₀ + θ₁·x`:
 
-```
+```text
 θ₁ = Σ(xᵢ−x̄)(yᵢ−ȳ) / Σ(xᵢ−x̄)²
 θ₀ = ȳ − θ₁·x̄
 ```
@@ -430,15 +430,15 @@ df = pd.DataFrame({
 })
 
 model = LinearRegression(df, 'x', 'y')
-print(model.t0, model.t1)      # 10.0 -3.0
-print(model.predict(10))       # -20.0
+print(model.t0, model.t1)                 # 10.0 -3.0
+print(model.predict(10))                  # -20.0
 print(model.model_mse(df['x'], df['y']))  # 0.0
 ```
 
 ---
 
 <a id="datahandler"></a>
-### &lrm;🗂️ DataHandler
+### 🗂️ DataHandler
 
 ساخت دیتاست نمونه و مدیریت فایل‌های CSV.
 
@@ -476,7 +476,7 @@ python -m unittest test_math_tool.py -v
 
 خروجی مورد انتظار:
 
-```
+```text
 Ran 62 tests in 0.xxx s
 
 OK
@@ -487,7 +487,7 @@ OK
 <a id="structure"></a>
 ## 📁 ساختار پروژه
 
-```
+```text
 Math-Tool/
 ├── math_tool.py         # هسته‌ی کتابخانه
 ├── test_math_tool.py    # مجموعه تست‌های واحد
