@@ -94,9 +94,10 @@ cd Math-Tool
 ```
 
 ### ۲. نصب وابستگی‌ها
+در مسیر فایل های پروژه این دستور را اجرا کنید:
 
 ```bash
-pip install numpy pandas matplotlib sympy
+pip install -r requirements.txt
 ```
 
 ### ۳. استفاده در پروژه
