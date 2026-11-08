@@ -18,6 +18,8 @@
 
 ---
 
+<div dir="rtl">
+
 **Math-Tool** یک کتابخانه‌ی جامع و ماژولار برای پایتون است که مجموعه‌ای از ابزارهای پرکاربرد ریاضی، آماری، ماتریسی، رسم نمودار و رگرسیون خطی را در قالبی ساده، تمیز و یکپارچه فراهم می‌کند.
 
 این پروژه با هدف فراهم‌سازی یک جعبه‌ابزار سبک و در عین حال کامل برای دانشجویان، مهندسان و علاقه‌مندان به علم داده طراحی شده است.
@@ -31,15 +33,15 @@
 - [📦 نصب و راه‌اندازی](#installation)
 - [🚀 شروع سریع](#quickstart)
 - [📚 مستندات API](#api)
-  - [⚙️ Settings](#settings)
-  - [∂ derivative](#derivative)
-  - [∑ sigma](#sigma)
-  - [📊 Stats](#stats)
-  - [🔢 Matrix](#matrix)
-  - [📐 Metrics](#metrics)
-  - [📈 Plots](#plots)
-  - [📉 LinearRegression](#linearregression)
-  - [🗂️ DataHandler](#datahandler)
+  - [&lrm;⚙️ Settings](#settings)
+  - [&lrm;∂ derivative](#derivative)
+  - [&lrm;∑ sigma](#sigma)
+  - [&lrm;📊 Stats](#stats)
+  - [&lrm;🔢 Matrix](#matrix)
+  - [&lrm;📐 Metrics](#metrics)
+  - [&lrm;📈 Plots](#plots)
+  - [&lrm;📉 LinearRegression](#linearregression)
+  - [&lrm;🗂️ DataHandler](#datahandler)
 - [🧪 اجرای تست‌ها](#tests)
 - [📁 ساختار پروژه](#structure)
 - [🤝 مشارکت](#contributing)
@@ -52,8 +54,8 @@
 ## ✨ ویژگی‌های کلیدی
 
 - 🧩 **تخت‌سازی و نرمال‌سازی ورودی**: پذیرش هر ساختار تو در تو (لیست، تاپل، جنریتور، آرایه‌ی نامپای، Series پانداز و…) و تبدیل خودکار به آرایه‌ی یک‌بعدی
-- ∂ **مشتق‌گیری نمادین**: محاسبه‌ی مشتق معمولی و جزئی با پشتیبانی از `SymPy`
-- ∑ **سیگمای جامع**: پشتیبانی از بازه، لیست، ترکیب دو لیست، دو تابع و عملگر دلخواه (`+`، `-`، `*`، `/`، `**`، `%`)
+- ∂ **مشتق‌گیری نمادین**: محاسبه‌ی مشتق معمولی و جزئی با پشتیبانی از SymPy
+- ∑ **سیگمای جامع**: پشتیبانی از بازه، لیست، ترکیب دو لیست، دو تابع و عملگر دلخواه (‎+‎، ‎−‎، ‎×‎، ‎÷‎، توان و باقیمانده)
 - 📊 **ابزارهای آماری**: میانگین، واریانس، انحراف معیار، نرمال‌سازی و نامساوی چبیشف
 - 🔢 **تشخیص نوع ماتریس**: شناسایی خودکار ماتریس‌های همانی، قطری، اسکالر، مربعی، سطری، ستونی و تهی
 - 📐 **معیارهای خطا**: محاسبه‌ی MSE و RMSE با پشتیبانی از ورودی‌های نامنظم
@@ -174,7 +176,7 @@ Plots.show_plot([1, 2, 3, 4], [1, 4, 9, 16])
 ---
 
 <a id="settings"></a>
-### ⚙️ Settings
+### &lrm;⚙️ Settings
 
 مدیریت و تخت‌سازی ورودی‌های پیچیده. دیکشنری و مجموعه پذیرفته نمی‌شوند.
 
@@ -211,9 +213,9 @@ Settings.is_iter("hello")  # False
 ---
 
 <a id="derivative"></a>
-### ∂ derivative
+### &lrm;∂ derivative
 
-محاسبه‌ی مشتق معمولی یا مشتق جزئی با استفاده از `SymPy`.
+محاسبه‌ی مشتق معمولی یا مشتق جزئی با استفاده از SymPy.
 
 #### `derivative(f, *symbols)`
 
@@ -235,7 +237,7 @@ derivative(f, a, b)  # [6*a**2, 6*b]
 ---
 
 <a id="sigma"></a>
-### ∑ sigma
+### &lrm;∑ sigma
 
 سیگمای جامع با پشتیبانی از بازه، لیست، دو لیست، دو تابع و عملگر دلخواه.
 
@@ -279,7 +281,7 @@ sigma(
 ---
 
 <a id="stats"></a>
-### 📊 Stats
+### &lrm;📊 Stats
 
 ابزارهای آماری پایه روی هر ورودی قابل‌تخت‌سازی.
 
@@ -310,12 +312,12 @@ s.norm()         # [-1.414, -0.707, 0, 0.707, 1.414]
 s.chebyshev(2)   # (-1.414, 7.414)
 ```
 
-> ⚠️ مقادیر `None` یا آرایه‌ی خالی خطا می‌دهند. مقادیر غیرعددی نیز خطای `ValueError`/`TypeError` می‌دهند.
+> ⚠️ مقادیر `None` یا آرایه‌ی خالی خطا می‌دهند. مقادیر غیرعددی نیز خطای `ValueError` یا `TypeError` می‌دهند.
 
 ---
 
 <a id="matrix"></a>
-### 🔢 Matrix
+### &lrm;🔢 Matrix
 
 تشخیص نوع ماتریس و بررسی تساوی.
 
@@ -323,7 +325,7 @@ s.chebyshev(2)   # (-1.414, 7.414)
 
 #### `detect_matrix()`
 
-خروجی: تاپل `(نوع, shape)`
+خروجی: تاپل (نوع، shape)
 
 | نوع | توضیح |
 |---|---|
@@ -353,7 +355,7 @@ Matrix([[1, 2], [3, 4]]).matrix_equal([[1, 2], [3, 4]])  # True
 ---
 
 <a id="metrics"></a>
-### 📐 Metrics
+### &lrm;📐 Metrics
 
 معیارهای خطا.
 
@@ -375,9 +377,9 @@ Metrics.rmse(0.375)  # 0.6123...
 ---
 
 <a id="plots"></a>
-### 📈 Plots
+### &lrm;📈 Plots
 
-رسم نمودارهای آماده با `Matplotlib`.
+رسم نمودارهای آماده با Matplotlib.
 
 #### `show_plot(x, y)`
 
@@ -393,7 +395,7 @@ Plots.show_scatter([1, 2, 3], [4, 5, 6])
 
 #### `comparison_plot(f_true, f_pred)`
 
-مقایسه‌ی دو تابع روی بازه‌ی `[1, 10]`.
+مقایسه‌ی دو تابع روی بازه‌ی [۱، ۱۰].
 
 ```python
 Plots.comparison_plot(
@@ -405,13 +407,13 @@ Plots.comparison_plot(
 ---
 
 <a id="linearregression"></a>
-### 📉 LinearRegression
+### &lrm;📉 LinearRegression
 
 رگرسیون خطی ساده با فرمول بسته روی دیتافریم.
 
 #### `LinearRegression(df, x_name, y_name)`
 
-مدل به‌فرم `y = θ₀ + θ₁·x`
+مدل به‌فرم y = θ₀ + θ₁·x
 
 ```
 θ₁ = Σ(xᵢ−x̄)(yᵢ−ȳ) / Σ(xᵢ−x̄)²
@@ -436,7 +438,7 @@ print(model.model_mse(df['x'], df['y']))  # 0.0
 ---
 
 <a id="datahandler"></a>
-### 🗂️ DataHandler
+### &lrm;🗂️ DataHandler
 
 ساخت دیتاست نمونه و مدیریت فایل‌های CSV.
 
@@ -524,20 +526,26 @@ Math-Tool/
 ---
 
 <a id="license"></a>
+## 📄 لایسنس
+
+لایسنس این پروژه در حال حاضر مشخص نشده است. اگر قصد استفاده‌ی تجاری یا بازتوزیع دارید، لطفاً با نویسنده تماس بگیرید.
 
 ---
 
-<a id="contact">kiarash123sardari@gmail.com</a>
+<a id="contact"></a>
 ## 📬 ارتباط با من
 
 **Kiarash Sardari**
 
-- GitHub: [@kiarashsardari](https://github.com/kiarashsardari)
+- 🐙 GitHub: [@kiarashsardari](https://github.com/kiarashsardari)
 - 📦 مخزن پروژه: [Math-Tool](https://github.com/kiarashsardari/Math-Tool)
+- 📧 ایمیل: [kiarash123sardari@gmail.com](mailto:kiarash123sardari@gmail.com)
+
+</div>
 
 ---
 
-<div align="center">
+<div align="center" dir="rtl">
 
 **⭐ اگر این پروژه برایتان مفید بود، فراموش نکنید یک ستاره بدهید! ⭐**
 
