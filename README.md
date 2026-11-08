@@ -524,18 +524,15 @@ Math-Tool/
 ---
 
 <a id="license"></a>
-## 📄 لایسنس
-
-لایسنس این پروژه در حال حاضر مشخص نشده است. اگر قصد استفاده‌ی تجاری یا بازتوزیع دارید، لطفاً با نویسنده تماس بگیرید.
 
 ---
 
-<a id="contact"></a>
+<a id="contact">kiarash123sardari@gmail.com</a>
 ## 📬 ارتباط با من
 
 **Kiarash Sardari**
 
-- 🐙 GitHub: [@kiarashsardari](https://github.com/kiarashsardari)
+- GitHub: [@kiarashsardari](https://github.com/kiarashsardari)
 - 📦 مخزن پروژه: [Math-Tool](https://github.com/kiarashsardari/Math-Tool)
 
 ---
