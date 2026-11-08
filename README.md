@@ -1,671 +1,549 @@
 <div align="center">
-<h1 align="center">MathTool</h1>
-</div>
-<div align="center">
 
-**جعبه ابزاری کاربردی برای محاسبات آماری، جبر خطی و حساب دیفرانسیل در پایتون**
+# 🧮 Math-Tool
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white&style=for-the-badge)
-![NumPy](https://img.shields.io/badge/NumPy-1.20%2B-013243?logo=numpy&style=for-the-badge)
-![SymPy](https://img.shields.io/badge/SymPy-1.9%2B-3B5526?logo=sympy&style=for-the-badge)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-3.5%2B-11557C?logo=matplotlib&style=for-the-badge)
+### کتابخانه جامع ابزارهای ریاضی، آماری و تحلیل داده در پایتون
 
-</div>
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![NumPy](https://img.shields.io/badge/NumPy-Required-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-Required-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![SymPy](https://img.shields.io/badge/SymPy-Required-3B5526?style=for-the-badge&logo=sympy&logoColor=white)](https://www.sympy.org/)
+[![Matplotlib](https://img.shields.io/badge/Matplotlib-Required-11557C?style=for-the-badge&logo=matplotlib&logoColor=white)](https://matplotlib.org/)
 
----
-
-## 📖 فهرست مطالب
-
-- [معرفی](#-معرفی)
-- [ویژگی‌ها](#features)
-- [نصب و پیش‌نیازها](#installation)
-- [شروع سریع](#-شروع-سریع)
-- [مستندات کامل توابع](#-مستندات-کامل-توابع)
-    - [ابزارهای کمکی](#1-ابزارهای-کمکی)
-    - [آمار توصیفی](#2-آمار-توصیفی)
-    - [بازه چبیشف و نرمال‌سازی](#chebyshev)
-    - [تشخیص نوع ماتریس](#4-تشخیص-نوع-ماتریس)
-    - [معیارهای خطا](#5-معیارهای-خطا)
-    - [سیگما و مشتق](#6-سیگما-و-مشتق)
-    - [رسم نمودار](#7-رسم-نمودار)
-    - [مقایسه ماتریس‌ها](#matrix-equal)
-- [مثال‌های ترکیبی](#examples)
-- [اجرای دمو](#-اجرای-دمو)
-- [ساختار فایل](#-ساختار-فایل)
-
----
-
-## 🎯 معرفی
-
-**MathTool** یک ماژول سبک و مستقل است که مجموعه‌ای از پرکاربردترین عملیات ریاضی را در قالب توابعی ساده و خوانا در اختیار شما قرار می‌دهد. این ابزار با تکیه بر **NumPy** برای محاسبات برداری، **SymPy** برای محاسبات نمادین و **Matplotlib** برای رسم نمودار، به شما امکان می‌دهد بدون نوشتن کدهای تکراری، به سرعت به نتایج دقیق برسید.
-
-مناسب برای:
-
-- 🎓 دانشجویان و پژوهشگران در حوزه آمار و ریاضی
-- 🤖 مهندسان یادگیری ماشین برای محاسبه معیارهای خطا
-- 📊 تحلیلگران داده برای محاسبات سریع توصیفی
-- 🧪 توسعه‌دهندگان برای نمونه‌سازی سریع الگوریتم‌ها
-
----
-
-## <a id="features"></a>✨ ویژگی‌ها
-
-| ویژگی | توضیح |
-|-------|--------|
-| 📊 **آمار توصیفی** | میانگین، واریانس و انحراف معیار برای هر نوع ورودی (لیست، تاپل، ماتریس) |
-| 📏 **بازه چبیشف** | محاسبه بازه `[μ − kσ, μ + kσ]` با اعتبارسنجی پارامتر k |
-| ⚖️ **نرمال‌سازی Z-Score** | استانداردسازی داده‌ها با محافظت در برابر تقسیم بر صفر |
-| 🔍 **تشخیص نوع ماتریس** | شناسایی خودکار ماتریس‌های پوچ، قطری، اسکالر، همانی، مربعی، ستونی و سطری |
-| 🎯 **معیارهای خطا** | محاسبه MSE و RMSE با بررسی تطابق ابعاد |
-| ➗ **عملگر سیگما** | جمع‌بندی روی دامنه دلخواه با تابع اختیاری و اعتبارسنجی نوع |
-| 🧾 **مشتق‌گیری نمادین** | مشتق چندمتغیره با SymPy و تبدیل خودکار رشته به نماد |
-| 📈 **رسم مقایسه‌ای** | نمودار دو تابع در بازه [1, 10] با برچسب‌گذاری خودکار |
-| ✅ **مقایسه ماتریس‌ها** | بررسی برابری دقیق دو ماتریس با چک کردن شکل |
-
----
-
-## <a id="installation"></a>📦 نصب و پیش‌نیازها
-
-> **پیش‌نیاز:** پایتون نسخه **۳.۸** یا بالاتر
-
-### روش ۱ — دانلود ZIP (بدون نیاز به Git)
-
-<div align="center">
-
-**۱.** روی دکمه‌ی سبز **`<> Code`** کلیک کنید  **→**  **۲.** گزینه‌ی **`Download ZIP`** را بزنید  **→**  **۳.** فایل را از حالت فشرده خارج کنید
+[![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen?style=for-the-badge)]()
+[![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)]()
+[![License](https://img.shields.io/badge/License-Not%20Specified-red?style=for-the-badge)]()
 
 </div>
 
-### روش ۲ — کلون با Git
+---
+
+**Math-Tool** یک کتابخانه‌ی جامع و ماژولار برای پایتون است که مجموعه‌ای از ابزارهای پرکاربرد ریاضی، آماری، ماتریسی، رسم نمودار و رگرسیون خطی را در قالبی ساده، تمیز و یکپارچه فراهم می‌کند.
+
+این پروژه با هدف فراهم‌سازی یک جعبه‌ابزار سبک و در عین حال کامل برای دانشجویان، مهندسان و علاقه‌مندان به علم داده طراحی شده است.
+
+---
+
+## 📑 فهرست محتویات
+
+- [✨ ویژگی‌های کلیدی](#features)
+- [📋 پیش‌نیازها](#requirements)
+- [📦 نصب و راه‌اندازی](#installation)
+- [🚀 شروع سریع](#quickstart)
+- [📚 مستندات API](#api)
+  - [⚙️ Settings](#settings)
+  - [∂ derivative](#derivative)
+  - [∑ sigma](#sigma)
+  - [📊 Stats](#stats)
+  - [🔢 Matrix](#matrix)
+  - [📐 Metrics](#metrics)
+  - [📈 Plots](#plots)
+  - [📉 LinearRegression](#linearregression)
+  - [🗂️ DataHandler](#datahandler)
+- [🧪 اجرای تست‌ها](#tests)
+- [📁 ساختار پروژه](#structure)
+- [🤝 مشارکت](#contributing)
+- [📄 لایسنس](#license)
+- [📬 ارتباط با من](#contact)
+
+---
+
+<a id="features"></a>
+## ✨ ویژگی‌های کلیدی
+
+- 🧩 **تخت‌سازی و نرمال‌سازی ورودی**: پذیرش هر ساختار تو در تو (لیست، تاپل، جنریتور، آرایه‌ی نامپای، Series پانداز و…) و تبدیل خودکار به آرایه‌ی یک‌بعدی
+- ∂ **مشتق‌گیری نمادین**: محاسبه‌ی مشتق معمولی و جزئی با پشتیبانی از `SymPy`
+- ∑ **سیگمای جامع**: پشتیبانی از بازه، لیست، ترکیب دو لیست، دو تابع و عملگر دلخواه (`+`، `-`، `*`، `/`، `**`، `%`)
+- 📊 **ابزارهای آماری**: میانگین، واریانس، انحراف معیار، نرمال‌سازی و نامساوی چبیشف
+- 🔢 **تشخیص نوع ماتریس**: شناسایی خودکار ماتریس‌های همانی، قطری، اسکالر، مربعی، سطری، ستونی و تهی
+- 📐 **معیارهای خطا**: محاسبه‌ی MSE و RMSE با پشتیبانی از ورودی‌های نامنظم
+- 📉 **رگرسیون خطی ساده**: ساخت مدل روی دیتافریم، پیش‌بینی و محاسبه‌ی خطای مدل
+- 🗂️ **مدیریت داده**: ساخت دیتاست نمونه و خواندن/ساخت خودکار فایل‌های CSV
+- 📈 **رسم نمودار**: نمودار خطی، پراکندگی و مقایسه‌ی دو تابع
+- 🧪 **تست کامل**: پوشش تست واحد برای تمامی کلاس‌ها و توابع
+
+---
+
+<a id="requirements"></a>
+## 📋 پیش‌نیازها
+
+قبل از استفاده، مطمئن شوید که نسخه‌ی **Python 3.8 یا بالاتر** روی سیستم شما نصب است.
+
+```bash
+python --version
+```
+
+---
+
+<a id="installation"></a>
+## 📦 نصب و راه‌اندازی
+
+### ۱. کلون کردن مخزن
 
 ```bash
 git clone https://github.com/kiarashsardari/Math-Tool.git
-cd LYM
+cd Math-Tool
 ```
 
-این ماژول تنها به سه کتابخانه نیاز دارد. این پیش‌نیازها در فایل `requirements.txt` تعریف شده‌اند:
-
-```txt
-numpy>=1.20
-sympy>=1.9
-matplotlib>=3.5
-```
-
-برای نصب تمام پیش‌نیازها، در ریشهٔ پروژه اجرا کنید:
+### ۲. نصب وابستگی‌ها
 
 ```bash
-pip install -r requirements.txt
+pip install numpy pandas matplotlib sympy
 ```
 
-سپس فایل `math_tool.py` را در کنار پروژه خود قرار دهید یا در مسیر `PYTHONPATH` کپی کنید. نیازی به نصب پکیج جداگانه‌ای نیست.
+### ۳. استفاده در پروژه
 
-> 💡 در صورت نیاز می‌توانید ابتدا `pip` را به‌روزرسانی کنید:
->
-> ```bash
-> python -m pip install --upgrade pip
-> ```
+فایل `math_tool.py` را در کنار پروژه‌ی خود قرار دهید یا از طریق زیر ایمپورت کنید:
+
+```python
+from math_tool import (
+    Settings, Stats, Matrix, Metrics,
+    LinearRegression, DataHandler, Plots,
+    derivative, sigma,
+)
+```
 
 ---
 
+<a id="quickstart"></a>
 ## 🚀 شروع سریع
 
+یک نمونه‌ی کامل از کاربرد کتابخانه:
+
 ```python
-from math_tool import *
-
-# داده نمونه
-data = [10, 20, 30, 40, 50]
-
-# آمار توصیفی
-print(loc(data))         # 30.0
-print(variance(data))    # 200.0
-print(scale(data))       # 14.142135623730951
-print(norm(data))        # [-1.41  -0.71   0.     0.71   1.41]
-
-# بازه چبیشف
-print(chebyshev(data, 2))  # (1.7157, 58.2842)
-
-# معیارهای خطا
-y_true = [3, -0.5, 2, 7]
-y_pred = [2.5, 0.0, 2, 8]
-err = mse(y_true, y_pred)
-print(err)               # 0.375
-print(rmse(err))         # 0.6123724356957945
-
-# مشتق نمادین
+import numpy as np
+import pandas as pd
 import sympy as sp
+
+from math_tool import (
+    Settings, Stats, Matrix, Metrics,
+    LinearRegression, DataHandler, Plots,
+    derivative, sigma,
+)
+
+# --- ۱. تخت‌سازی ورودی ---
+data = [1, 2, [3, (4, 5)], np.array([[6, 7], [8, 9]])]
+flat = Settings(data).x
+print(flat)  # [1 2 3 4 5 6 7 8 9]
+
+# --- ۲. مشتق‌گیری نمادین ---
 x = sp.Symbol('x')
-f = 2*x**2 + 3*x - 3
-print(derivative(f, 'x'))  # [4*x + 3]
+f = 2 * x**3 + 3 * x - 6
+print(derivative(f, x))  # 6*x**2 + 3
+
+# --- ۳. سیگمای بازه‌ای ---
+total = sigma(0, 10, lambda i: 2 * i)
+print(total)  # 110
+
+# --- ۴. محاسبات آماری ---
+s = Stats([1, 2, 3, 4, 5])
+print(s.loc())       # 3.0
+print(s.variance())  # 2.0
+print(s.scale())     # 1.4142...
+print(s.norm())      # [-1.414 -0.707 0. 0.707 1.414]
+print(s.chebyshev(2)) # (-1.414, 7.414)
+
+# --- ۵. تشخیص نوع ماتریس ---
+print(Matrix([[1, 0], [0, 1]]).detect_matrix())  # ('identity', (2, 2))
+
+# --- ۶. معیار خطا ---
+print(Metrics.mse([3, -0.5, 2, 7], [2.5, 0.0, 2, 8]))  # 0.375
+
+# --- ۷. رگرسیون خطی ---
+df = pd.DataFrame({
+    'x': [1, 2, 3, 4, 5],
+    'y': [7, 4, 1, -2, -5],
+})
+model = LinearRegression(df, 'x', 'y')
+print(model.t0, model.t1)  # 10.0 -3.0
+print(model.predict(10))   # -20.0
+
+# --- ۸. مدیریت داده ---
+df_sample = DataHandler.make_sample_dataset(50)
+print(df_sample.head())
+
+# --- ۹. رسم نمودار ---
+Plots.show_plot([1, 2, 3, 4], [1, 4, 9, 16])
 ```
 
 ---
 
-## 📚 مستندات کامل توابع
+<a id="api"></a>
+## 📚 مستندات API
 
-### 1. ابزارهای کمکی
+---
 
-#### 🔹 `is_empty(x)`
+<a id="settings"></a>
+### ⚙️ Settings
 
-بررسی می‌کند آیا ورودی هیچ عنصری ندارد.
+مدیریت و تخت‌سازی ورودی‌های پیچیده. دیکشنری و مجموعه پذیرفته نمی‌شوند.
+
+#### `Settings(x)`
 
 ```python
-def is_empty(x)
+Settings([1, 2, [3, (4, 5)], np.array([[6, 7]])]).x
+# خروجی: np.array([1, 2, 3, 4, 5, 6, 7], dtype=object)
 ```
 
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `x` | any | هر نوع داده‌ای که قابل تبدیل به `numpy.ndarray` باشد |
+#### `is_empty()`
 
-**بازگشتی:** `bool` — مقدار `True` اگر آرایه بدون عنصر باشد.
+بررسی خالی بودن ورودی (همه‌ی اعضا `None` یا آرایه‌ی خالی).
 
 ```python
->>> is_empty([])
-True
->>> is_empty([1, 2, 3])
-False
+Settings([None]).is_empty()        # True
+Settings([None, 1]).is_empty()     # False
+```
+
+#### `flat_and_array()`
+
+تخت‌سازی کامل و بازگرداندن آرایه‌ی نامپای یک‌بعدی.
+
+#### `is_iter(x)` — استاتیک
+
+بررسی iterable بودن، با استثنای `str`، `dict` و `set`.
+
+```python
+Settings.is_iter([1, 2])   # True
+Settings.is_iter(12)       # False
+Settings.is_iter("hello")  # False
 ```
 
 ---
 
-#### 🔹 `flat_and_array(x)`
+<a id="derivative"></a>
+### ∂ derivative
 
-ورودی را به یک آرایه NumPy یک‌بعدی (تخت) تبدیل می‌کند. این تابع به‌طور گسترده در تمام توابع دیگر استفاده می‌شود.
+محاسبه‌ی مشتق معمولی یا مشتق جزئی با استفاده از `SymPy`.
 
-```python
-def flat_and_array(x)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `x` | list \| tuple \| ndarray | داده ورودی با هر ابعادی |
-
-**بازگشتی:** `numpy.ndarray` — آرایه‌ای یک‌بعدی از عناصر.
+#### `derivative(f, *symbols)`
 
 ```python
->>> flat_and_array([[1, 2], [3, 4]])
-array([1, 2, 3, 4])
+import sympy as sp
+from math_tool import derivative
+
+x = sp.Symbol('x')
+derivative(2*x**3 + 3*x - 6, x)  # 6*x**2 + 3
+
+# مشتق جزئی
+a, b = sp.symbols('a b')
+f = 2*a**3 + 3*b**2
+derivative(f, a, b)  # [6*a**2, 6*b]
 ```
+
+> 💡 اگر فقط یک نماد بدهید، نتیجه یک عبارت تکی خواهد بود؛ در غیر این صورت لیستی از مشتق‌ها برمی‌گردد.
 
 ---
 
-### 2. آمار توصیفی
+<a id="sigma"></a>
+### ∑ sigma
 
-#### 🔹 `loc(nums)`
+سیگمای جامع با پشتیبانی از بازه، لیست، دو لیست، دو تابع و عملگر دلخواه.
 
-میانگین حسابی (Location / Mean) عناصر را محاسبه می‌کند.
+#### `sigma(i=None, n=None, f=identity, g=identity, operator=None)`
 
-```python
-def loc(nums)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `nums` | array-like | مجموعه اعداد ورودی |
-
-**بازگشتی:** `float | None` — میانگین، یا `None` برای ورودی خالی.
+##### حالت ۱: بازه با یک تابع
 
 ```python
->>> loc([1, 2, 3, 4, 5])
-3.0
->>> loc([])
-None
+sigma(0, 10, lambda i: 2*i)   # 110
 ```
+
+##### حالت ۲: لیست با یک تابع
+
+```python
+sigma([1, 2, 3, 4], f=lambda x: 2*x)   # 20
+sigma(n=[1, 2, 3, 4], g=lambda x: 2*x) # 20
+```
+
+##### حالت ۳: دو لیست با عملگر و یک تابع
+
+```python
+i = [1, 2, 3, 4, 5]
+n = [6, 7, 8, 9, 10]
+sigma(i, n, f=lambda x: 2*x, operator='-')   # -50
+```
+
+##### حالت ۴: دو لیست با دو تابع و عملگر
+
+```python
+sigma(
+    [1, 2, 3, 4, 5],
+    [6, 7, 8, 9, 10],
+    f=lambda x: 2*x,
+    g=lambda x: x - 1,
+    operator='-',
+)  # -5
+```
+
+**عملگرهای پشتیبانی‌شده:** `+`، `-`، `*`، `/`، `**`، `%`
 
 ---
 
-#### 🔹 `variance(nums)`
+<a id="stats"></a>
+### 📊 Stats
 
-واریانس **جامعه** (تقسیم بر n) را محاسبه می‌کند.
+ابزارهای آماری پایه روی هر ورودی قابل‌تخت‌سازی.
 
-```python
-def variance(nums)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `nums` | array-like | مجموعه اعداد ورودی |
-
-**بازگشتی:** `float | None` — واریانس، یا `None` برای ورودی خالی.
-
-> ⚠️ **توجه:** این واریانس از نوع جامعه است (تقسیم بر `n`)، نه نمونه (تقسیم بر `n-1`).
+#### `Stats(nums)`
 
 ```python
->>> variance([1, 2, 3, 4, 5])
-2.0
+from math_tool import Stats
+
+s = Stats([[1, 2], (3, 4), [5]])
 ```
+
+#### متدها
+
+| متد | فرمول | توضیح |
+|---|---|---|
+| `loc()` | μ = Σ(xᵢ)/n | میانگین |
+| `variance()` | σ² = Σ(xᵢ−μ)²/n | واریانس (جامعه) |
+| `scale()` | σ = √variance | انحراف معیار |
+| `norm()` | (xᵢ−μ)/σ | نرمال‌سازی |
+| `chebyshev(k)` | μ ± k·σ | بازه‌ی نامساوی چبیشف |
+
+```python
+s = Stats([1, 2, 3, 4, 5])
+s.loc()          # 3.0
+s.variance()     # 2.0
+s.scale()        # 1.4142...
+s.norm()         # [-1.414, -0.707, 0, 0.707, 1.414]
+s.chebyshev(2)   # (-1.414, 7.414)
+```
+
+> ⚠️ مقادیر `None` یا آرایه‌ی خالی خطا می‌دهند. مقادیر غیرعددی نیز خطای `ValueError`/`TypeError` می‌دهند.
 
 ---
 
-#### 🔹 `scale(nums)`
+<a id="matrix"></a>
+### 🔢 Matrix
 
-انحراف معیار (Standard Deviation) را به‌عنوان جذر واریانس محاسبه می‌کند.
+تشخیص نوع ماتریس و بررسی تساوی.
 
-```python
-def scale(nums)
-```
+#### `Matrix(M)`
 
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `nums` | array-like | مجموعه اعداد ورودی |
+#### `detect_matrix()`
 
-**بازگشتی:** `float | None` — انحراف معیار، یا `None` برای ورودی خالی.
-
-```python
->>> scale([2, 4, 4, 4, 5, 5, 7, 9])
-2.0
-```
-
----
-
-### <a id="chebyshev"></a>3. بازه چبیشف و نرمال‌سازی
-
-#### 🔹 `chebyshev(nums, k)`
-
-بازه چبیشف را به‌صورت `[μ − kσ, μ + kσ]` محاسبه می‌کند.
-
-```python
-def chebyshev(nums, k)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `nums` | array-like | مجموعه اعداد ورودی |
-| `k` | int \| float | ضریب بازه (باید بزرگ‌تر از صفر باشد) |
-
-**بازگشتی:** `tuple[float, float] | None` — کران پایین و بالا، یا `None` برای ورودی خالی.
-
-**خطاها:** `ValueError` اگر `k ≤ 0`.
-
-```python
->>> chebyshev([1, 2, 3, 4, 5], 2)
-(0.1715728752538097, 5.82842712474619)
-```
-
-> 💡 اگر انحراف معیار صفر باشد، هر دو کران برابر میانگین خواهند بود.
-
----
-
-#### 🔹 `norm(x_s)`
-
-نرمال‌سازی Z-Score را انجام می‌دهد و هر مقدار را به `(x − μ) / σ` تبدیل می‌کند.
-
-```python
-def norm(x_s)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `x_s` | array-like | مجموعه اعداد ورودی |
-
-**بازگشتی:** `ndarray | None` — آرایه نرمال‌شده یا `None` برای ورودی خالی.
-
-> 💡 اگر انحراف معیار صفر باشد، آرایه اصلی بدون تغییر بازگردانده می‌شود.
-
-```python
->>> norm([1, 2, 3, 4, 5])
-array([-1.41421356, -0.70710678,  0.        ,  0.70710678,  1.41421356])
-```
-
----
-
-### 4. تشخیص نوع ماتریس
-
-#### 🔹 `detect_matrix(M)`
-
-نوع ماتریس را به‌همراه ابعاد آن تشخیص می‌دهد.
-
-```python
-def detect_matrix(M)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `M` | array-like | ماتریس یا آرایه ورودی |
-
-**بازگشتی:** `tuple[str, tuple] | tuple[None, tuple]`
-
-- عضو اول: نوع ماتریس (رشته) یا `None` اگر آرایه خالی باشد.
-- عضو دوم: ابعاد ماتریس به‌صورت tuple.
-
-**انواع قابل تشخیص:**
+خروجی: تاپل `(نوع, shape)`
 
 | نوع | توضیح |
-|-----|--------|
-| `'null'` | تمام درایه‌ها صفر |
-| `'rectangular'` | ماتریس مستطیلی عمومی |
-| `'square'` | ماتریس مربعی غیرقطری |
-| `'diagonal'` | قطری با درایه‌های قطری ناهمگون |
-| `'scalar'` | قطری با تمام درایه‌های قطری مساوی |
-| `'identity'` | قطری با درایه‌های قطری برابر ۱ |
-| `'column'` | ماتریس ستونی (n×1) |
-| `'row'` | ماتریس سطری (1×n) |
-
-**خطاها:** `ValueError` اگر آرایه بیش از دو بعد داشته باشد.
+|---|---|
+| `null` | همه‌ی اعضا صفر |
+| `rectangular` | مستطیلی |
+| `row` | سطری (۱×n) |
+| `column` | ستونی (n×۱) |
+| `square` | مربعی |
+| `diagonal` | قطری |
+| `scalar` | مضربی از همانی |
+| `identity` | همانی |
 
 ```python
->>> detect_matrix([[1, 0, 0], [0, 2, 0], [0, 0, 3]])
-('diagonal', (3, 3))
+Matrix([[1, 0], [0, 1]]).detect_matrix()   # ('identity', (2, 2))
+Matrix([[3, 0], [0, 3]]).detect_matrix()   # ('scalar', (2, 2))
+Matrix([[0, 0], [0, 0]]).detect_matrix()   # ('null', (2, 2))
+```
 
->>> detect_matrix([[1, 0], [0, 1]])
-('identity', (2, 2))
+#### `matrix_equal(B)`
 
->>> detect_matrix([1, 2, 3, 4])
-('row', (1, 4))
+بررسی تساوی دو ماتریس (به‌همراه shape).
 
->>> detect_matrix([[0, 0], [0, 0]])
-('null', (2, 2))
+```python
+Matrix([[1, 2], [3, 4]]).matrix_equal([[1, 2], [3, 4]])  # True
 ```
 
 ---
 
-### 5. معیارهای خطا
+<a id="metrics"></a>
+### 📐 Metrics
 
-#### 🔹 `mse(y_true_array, y_pred_array)`
+معیارهای خطا.
 
-میانگین مربع خطا (Mean Squared Error) را محاسبه می‌کند.
-
-```python
-def mse(y_true_array, y_pred_array)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `y_true_array` | array-like | مقادیر واقعی |
-| `y_pred_array` | array-like | مقادیر پیش‌بینی‌شده |
-
-**بازگشتی:** `float | None` — مقدار MSE، یا `None` اگر ابعاد ناهمخوان یا آرایه خالی باشند.
+#### `mse(y_true, y_pred)` — استاتیک
 
 ```python
->>> mse([3, -0.5, 2, 7], [2.5, 0.0, 2, 8])
-0.375
+from math_tool import Metrics
+Metrics.mse([3, -0.5, 2, 7], [2.5, 0.0, 2, 8])  # 0.375
 ```
+
+#### `rmse(mse_value)` — استاتیک
+
+```python
+Metrics.rmse(0.375)  # 0.6123...
+```
+
+> 💡 اگر اندازه‌ی دو ورودی برابر نباشد، خروجی `None` است.
 
 ---
 
-#### 🔹 `rmse(mse_value)`
+<a id="plots"></a>
+### 📈 Plots
 
-جذر میانگین مربع خطا (Root Mean Squared Error) را از مقدار MSE محاسبه می‌کند.
+رسم نمودارهای آماده با `Matplotlib`.
+
+#### `show_plot(x, y)`
 
 ```python
-def rmse(mse_value)
+Plots.show_plot([1, 2, 3, 4], [1, 4, 9, 16])
 ```
 
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `mse_value` | float \| None | مقدار MSE که قبلاً محاسبه شده |
-
-**بازگشتی:** `float | None` — مقدار RMSE، یا `None` اگر ورودی `None` باشد.
+#### `show_scatter(x, y)`
 
 ```python
->>> rmse(0.375)
-0.6123724356957945
+Plots.show_scatter([1, 2, 3], [4, 5, 6])
 ```
 
----
+#### `comparison_plot(f_true, f_pred)`
 
-### 6. سیگما و مشتق
-
-#### 🔹 `sigma(i, n, f=lambda x: x)`
-
-عملگر جمع (Σ) را از `i` تا `n` (شامل هر دو) برای تابع دلخواه محاسبه می‌کند.
+مقایسه‌ی دو تابع روی بازه‌ی `[1, 10]`.
 
 ```python
-def sigma(i, n, f=lambda x: x)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `i` | int | کران پایین (شامل) |
-| `n` | int | کران بالا (شامل) |
-| `f` | callable | تابع جمله عمومی، پیش‌فرض `f(x) = x` |
-
-**بازگشتی:** مجموع مقادیر `f(j)` برای `j ∈ [i, n]`.
-
-**خطاها:** `TypeError` اگر `i` یا `n` عدد صحیح نباشند یا از نوع `bool` باشند.
-
-> ⚠️ `bool` به‌عنوان عدد صحیح پذیرفته نمی‌شود تا از سوءاستفاده جلوگیری شود.
-
-```python
->>> sigma(0, 10, lambda x: 2*x**2 + 3*x - 3)
-902
->>> sigma(1, 5)  # 1 + 2 + 3 + 4 + 5
-15
-```
-
----
-
-#### 🔹 `derivative(f, *symbols)`
-
-مشتق‌های جزئی یک عبارت نمادین را نسبت به نمادهای مشخص‌شده محاسبه می‌کند.
-
-```python
-def derivative(f, *symbols)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `f` | SymPy expression | عبارت نمادین برای مشتق‌گیری |
-| `*symbols` | Symbol \| str | نمادها یا نام نمادها (رشته) |
-
-**بازگشتی:** `list[SymPy expression]` — لیست مشتق‌ها به‌ترتیب نمادها.
-
-> 💡 اگر رشته بدهید، به‌طور خودکار به `Symbol` تبدیل می‌شود.
-
-```python
->>> import sympy as sp
->>> x = sp.Symbol('x')
->>> f = 2*x**2 + 3*x - 3
->>> derivative(f, 'x')
-[4*x + 3]
-
->>> derivative(f, 'x', 'y')
-[4*x + 3, 0]
-```
-
----
-
-### 7. رسم نمودار
-
-#### 🔹 `comparison_plot(f_true, f_pred)`
-
-نمودار مقایسه‌ای دو تابع را در بازه `x ∈ [1, 10]` با ۱۰۰ نقطه رسم می‌کند.
-
-```python
-def comparison_plot(f_true, f_pred)
-```
-
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `f_true` | callable | تابع مرجع (برچسب `truth`) |
-| `f_pred` | callable | تابع پیش‌بینی (برچسب `guess`) |
-
-**بازگشتی:** `None` — نمودار را نمایش می‌دهد.
-
-```python
-comparison_plot(
-    f_true=lambda x: 2*x**2 + 3*x - 3,
-    f_pred=lambda x: 2*x**2 + 2*x - 3
+Plots.comparison_plot(
+    f_true=lambda x: 2*x,
+    f_pred=lambda x: 3*x + 3,
 )
 ```
 
 ---
 
-### <a id="matrix-equal"></a>8. مقایسه ماتریس‌ها
+<a id="linearregression"></a>
+### 📉 LinearRegression
 
-#### 🔹 `matrix_equal(A, B)`
+رگرسیون خطی ساده با فرمول بسته روی دیتافریم.
 
-بررسی می‌کند آیا دو ماتریس از نظر شکل و محتوا کاملاً یکسان هستند.
+#### `LinearRegression(df, x_name, y_name)`
 
-```python
-def matrix_equal(A, B)
+مدل به‌فرم `y = θ₀ + θ₁·x`
+
+```
+θ₁ = Σ(xᵢ−x̄)(yᵢ−ȳ) / Σ(xᵢ−x̄)²
+θ₀ = ȳ − θ₁·x̄
 ```
 
-| پارامتر | نوع | توضیح |
-|---------|-----|--------|
-| `A` | array-like | ماتریس اول |
-| `B` | array-like | ماتریس دوم |
-
-**بازگشتی:** `bool` — `True` اگر شکل و تمام درایه‌ها برابر باشند، در غیر این صورت `False`.
-
 ```python
->>> matrix_equal([[1, 2], [3, 4]], [[1, 2], [3, 4]])
-True
->>> matrix_equal([[1, 2]], [[1, 2], [3, 4]])
-False
-```
+import pandas as pd
+from math_tool import LinearRegression
 
----
+df = pd.DataFrame({
+    'x': [1, 2, 3, 4, 5],
+    'y': [7, 4, 1, -2, -5],
+})
 
-## <a id="examples"></a>💡 مثال‌های ترکیبی
-
-### مثال ۱ — تحلیل آماری یک مجموعه داده
-
-```python
-from math_tool import *
-
-scores = [78, 85, 90, 92, 88, 75, 95, 82, 79, 91]
-
-mean     = loc(scores)
-var      = variance(scores)
-std      = scale(scores)
-interval = chebyshev(scores, 2)
-normalized = norm(scores)
-
-print(f"میانگین: {mean:.2f}")
-print(f"انحراف معیار: {std:.2f}")
-print(f"بازه چبیشف (k=2): [{interval[0]:.2f}, {interval[1]:.2f}]")
-print(f"داده‌های نرمال‌شده: {normalized.round(2)}")
+model = LinearRegression(df, 'x', 'y')
+print(model.t0, model.t1)      # 10.0 -3.0
+print(model.predict(10))       # -20.0
+print(model.model_mse(df['x'], df['y']))  # 0.0
 ```
 
 ---
 
-### مثال ۲ — ارزیابی یک مدل رگرسیون
+<a id="datahandler"></a>
+### 🗂️ DataHandler
+
+ساخت دیتاست نمونه و مدیریت فایل‌های CSV.
+
+#### `make_sample_dataset(n, seed=313)` — استاتیک
+
+ساخت دیتاست نمونه از سن و قد با نویز مصنوعی و ذخیره در `sample_dataset.csv`.
 
 ```python
-from math_tool import *
-
-y_true = [2.5, 3.1, 4.8, 5.2, 6.0]
-y_pred = [2.4, 3.3, 4.5, 5.5, 5.9]
-
-mse_val  = mse(y_true, y_pred)
-rmse_val = rmse(mse_val)
-
-print(f"MSE  = {mse_val:.4f}")
-print(f"RMSE = {rmse_val:.4f}")
+df = DataHandler.make_sample_dataset(100)
+print(df.head())
 ```
 
----
+#### `read_or_make_csv(address, make_dataset_function, *args)` — استاتیک
 
-### مثال ۳ — مشتق‌گیری و رسم نمودار
+اگر فایل CSV موجود باشد می‌خواند، در غیر این صورت با تابع داده‌شده آن را می‌سازد.
 
 ```python
-import sympy as sp
-from math_tool import *
-
-x = sp.Symbol('x')
-f = x**3 - 3*x**2 + 2*x + 1
-
-# مشتق نسبت به x
-print(derivative(f, 'x'))
-
-# رسم مقایسه با تابع اصلی
-comparison_plot(
-    f_true=sp.lambdify(x, f, 'numpy'),
-    f_pred=lambda t: t**3 - 3*t**2 + 2*t + 1.5
+df = DataHandler.read_or_make_csv(
+    "data.csv",
+    DataHandler.make_sample_dataset,
+    100,
 )
 ```
 
 ---
 
-### مثال ۴ — تشخیص نوع ماتریس در عمل
+<a id="tests"></a>
+## 🧪 اجرای تست‌ها
 
-```python
-from math_tool import *
-
-matrices = {
-    "همانی":        [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
-    "اسکالر":       [[5, 0, 0], [0, 5, 0], [0, 0, 5]],
-    "قطری":         [[1, 0, 0], [0, 2, 0], [0, 0, 3]],
-    "پوچ":          [[0, 0], [0, 0]],
-    "ستونی":        [[1], [2], [3]],
-    "سطری":         [[1, 2, 3]],
-    "مستطیلی":      [[1, 2, 3], [4, 5, 6]],
-}
-
-for name, M in matrices.items():
-    typ, shape = detect_matrix(M)
-    print(f"{name:12s} → {typ:12s} {shape}")
-```
-
-**خروجی:**
-
-```
-همانی        → identity     (3, 3)
-اسکالر       → scalar       (3, 3)
-قطری         → diagonal     (3, 3)
-پوچ          → null         (2, 2)
-ستونی        → column       (3, 1)
-سطری         → row          (1, 3)
-مستطیلی      → rectangular  (2, 3)
-```
-
----
-
-## 🧪 اجرای دمو
-
-فایل شامل بلوک `if __name__ == "__main__":` است که یک دموی کامل از تمام توابع را اجرا می‌کند. برای اجرا:
+کتابخانه دارای مجموعه‌ی کامل تست واحد با `unittest` است.
 
 ```bash
-python math_tool.py
+python -m unittest test_math_tool.py -v
 ```
 
-برنامه در هر مرحله منتظر فشردن **Enter** می‌ماند تا شما فرصت بررسی خروجی هر تابع را داشته باشید. در پایان عبارت `bye...` نمایش داده می‌شود.
-
-> 💡 **نکته:** برای اجرای دمو بدون توقف، می‌توانید تمام خطوط `input(...)` را حذف یا کامنت کنید.
-
----
-
-## 🗂 ساختار فایل
+خروجی مورد انتظار:
 
 ```
-requirements.txt
-math_tool.py
-│
-├── ابزارهای کمکی
-│   ├── is_empty(x)
-│   └── flat_and_array(x)
-│
-├── آمار توصیفی
-│   ├── loc(nums)
-│   ├── variance(nums)
-│   └── scale(nums)
-│
-├── نرمال‌سازی
-│   ├── chebyshev(nums, k)
-│   └── norm(x_s)
-│
-├── ماتریس
-│   ├── detect_matrix(M)
-│   └── matrix_equal(A, B)
-│
-├── معیارهای خطا
-│   ├── mse(y_true, y_pred)
-│   └── rmse(mse_value)
-│
-├── محاسبات نمادین
-│   ├── sigma(i, n, f)
-│   └── derivative(f, *symbols)
-│
-└── رسم نمودار
-    └── comparison_plot(f_true, f_pred)
+Ran 62 tests in 0.xxx s
+
+OK
 ```
 
 ---
 
-### فایل `requirements.txt`
+<a id="structure"></a>
+## 📁 ساختار پروژه
 
-```txt
-numpy>=1.20
-sympy>=1.9
-matplotlib>=3.5
 ```
+Math-Tool/
+├── math_tool.py         # هسته‌ی کتابخانه
+├── test_math_tool.py    # مجموعه تست‌های واحد
+└── README.md            # مستندات پروژه
+```
+
+---
+
+<a id="contributing"></a>
+## 🤝 مشارکت
+
+از هرگونه مشارکت، پیشنهاد و گزارش باگ استقبال می‌شود! 🙌
+
+1. مخزن را **Fork** کنید
+2. یک شاخه‌ی جدید بسازید:
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. تغییرات خود را **Commit** کنید:
+   ```bash
+   git commit -m "Add some amazing feature"
+   ```
+4. شاخه را **Push** کنید:
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. یک **Pull Request** باز کنید
+
+### راهنمای سبک کد
+
+- رعایت **PEP 8**
+- افزودن **تست** برای هر قابلیت جدید
+- استفاده از **docstring** برای توابع عمومی
+- حفظ سازگاری با ورژن‌های قبلی
+
+---
+
+<a id="license"></a>
+## 📄 لایسنس
+
+لایسنس این پروژه در حال حاضر مشخص نشده است. اگر قصد استفاده‌ی تجاری یا بازتوزیع دارید، لطفاً با نویسنده تماس بگیرید.
+
+---
+
+<a id="contact"></a>
+## 📬 ارتباط با من
+
+**Kiarash Sardari**
+
+- 🐙 GitHub: [@kiarashsardari](https://github.com/kiarashsardari)
+- 📦 مخزن پروژه: [Math-Tool](https://github.com/kiarashsardari/Math-Tool)
+
+---
+
+<div align="center">
+
+**⭐ اگر این پروژه برایتان مفید بود، فراموش نکنید یک ستاره بدهید! ⭐**
+
+ساخته شده با ❤️ و Python
+
+</div>
