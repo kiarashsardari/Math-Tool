@@ -28,25 +28,31 @@
 
 ## 📑 فهرست محتویات
 
-- [✨ ویژگی‌های کلیدی](#features)
-- [📋 پیش‌نیازها](#requirements)
-- [📦 نصب و راه‌اندازی](#installation)
-- [🚀 شروع سریع](#quickstart)
-- [📚 مستندات API](#api)
-  - [⚙️ Settings](#settings)
-  - [∂ derivative](#derivative)
-  - [∑ sigma](#sigma)
-  - [📊 Stats](#stats)
-  - [🔢 Matrix](#matrix)
-  - [📐 Metrics](#metrics)
-  - [📈 Plots](#plots)
-  - [📉 LinearRegression](#linearregression)
-  - [🗂️ DataHandler](#datahandler)
-- [🧪 اجرای تست‌ها](#tests)
-- [📁 ساختار پروژه](#structure)
-- [🤝 مشارکت](#contributing)
-- [📄 لایسنس](#license)
-- [📬 ارتباط با من](#contact)
+<ul dir="rtl">
+  <li><a href="#features">✨ ویژگی‌های کلیدی</a></li>
+  <li><a href="#requirements">📋 پیش‌نیازها</a></li>
+  <li><a href="#installation">📦 نصب و راه‌اندازی</a></li>
+  <li><a href="#quickstart">🚀 شروع سریع</a></li>
+  <li>
+    <a href="#api">📚 مستندات API</a>
+    <ul dir="rtl">
+      <li><a href="#settings">⚙️ Settings</a></li>
+      <li><a href="#derivative">∂ derivative</a></li>
+      <li><a href="#sigma">∑ sigma</a></li>
+      <li><a href="#stats">📊 Stats</a></li>
+      <li><a href="#matrix">🔢 Matrix</a></li>
+      <li><a href="#metrics">📐 Metrics</a></li>
+      <li><a href="#plots">📈 Plots</a></li>
+      <li><a href="#linearregression">📉 LinearRegression</a></li>
+      <li><a href="#datahandler">🗂️ DataHandler</a></li>
+    </ul>
+  </li>
+  <li><a href="#tests">🧪 اجرای تست‌ها</a></li>
+  <li><a href="#structure">📁 ساختار پروژه</a></li>
+  <li><a href="#contributing">🤝 مشارکت</a></li>
+  <li><a href="#license">📄 لایسنس</a></li>
+  <li><a href="#contact">📬 ارتباط با من</a></li>
+</ul>
 
 ---
 
