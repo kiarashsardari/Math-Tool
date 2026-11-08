@@ -252,6 +252,46 @@
   .note.warn{border-inline-start-color:#fbbf24;background:rgba(251,191,36,.07);color:#fde68a;}
   .note.warn strong{color:#fff8e1;}
 
+  /* DOWNLOAD CARD */
+  .dl-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    transition: .18s;
+    text-decoration: none;
+  }
+  .dl-card:hover {
+    border-color: var(--accent);
+    background: rgba(45,212,191,.05);
+    transform: translateY(-2px);
+  }
+  .dl-card .dl-ico {
+    font-size: 1.4rem;
+    width: 40px;height: 40px;
+    display: flex;align-items: center;justify-content: center;
+    border-radius: 10px;
+    background: rgba(45,212,191,.1);
+    border: 1px solid rgba(45,212,191,.24);
+    flex-shrink: 0;
+  }
+  .dl-card .dl-info { flex: 1; min-width: 0; }
+  .dl-card .dl-name {
+    font-family: monospace;
+    font-size: .92rem;
+    font-weight: 700;
+    color: #7dd3fc;
+    direction: ltr;
+    text-align: right;
+    margin-bottom: 2px;
+  }
+  .dl-card .dl-meta { font-size: .8rem; color: var(--muted); }
+  .dl-card .dl-arrow { color: var(--accent); font-size: 1.1rem; flex-shrink: 0; }
+
   /* TABLE */
   .table-wrap{
     border:1px solid var(--border);border-radius:var(--radius);
@@ -478,9 +518,13 @@
     </p>
 
     <div class="hero-actions">
-      <a class="btn btn-primary" href="https://github.com/kiarashsardari/Math-Tool" target="_blank" rel="noopener">
+      <a class="btn btn-primary" href="https://github.com/kiarashsardari/Math-Tool/archive/refs/heads/main.zip">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 12L3 7h3V1h4v6h3zM2 14h12v2H2z"/></svg>
+        دانلود ZIP پروژه
+      </a>
+      <a class="btn" href="https://github.com/kiarashsardari/Math-Tool" target="_blank" rel="noopener">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        مشاهده مخزن پروژه
+        مشاهده مخزن
       </a>
       <a class="btn" href="#quickstart">شروع سریع</a>
     </div>
@@ -617,8 +661,11 @@
       <div class="step-card">
         <span class="num">۱</span>
         <h3>روش ۱ — دانلود ZIP</h3>
-        <p>بدون نیاز به Git. از صفحه گیت‌هاب پروژه، فایل را به صورت ZIP دانلود و استخراج کنید.</p>
-        <a class="btn" href="https://github.com/kiarashsardari/Math-Tool" target="_blank" rel="noopener">دانلود از GitHub</a>
+        <p>بدون نیاز به Git. با کلیک روی دکمه‌ی زیر، فایل ZIP پروژه مستقیماً دانلود می‌شود.</p>
+        <a class="btn btn-primary" href="https://github.com/kiarashsardari/Math-Tool/archive/refs/heads/main.zip">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 12L3 7h3V1h4v6h3zM2 14h12v2H2z"/></svg>
+          دانلود ZIP مستقیم
+        </a>
       </div>
 
       <div class="step-card">
@@ -659,6 +706,44 @@ sympy&gt;=1.8</pre>
           <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">bash</span></div>
           <pre>python -m pip install --upgrade pip</pre>
         </div>
+      </div>
+    </div>
+
+    <div style="margin-top:26px" class="step-card">
+      <h3>دانلود فایل‌های تکی</h3>
+      <p>اگر فقط به یکی از فایل‌ها نیاز دارید، مستقیم دانلود کنید:</p>
+
+      <div class="grid" style="grid-template-columns:1fr;margin-top:16px;gap:12px">
+        <a class="dl-card" href="https://raw.githubusercontent.com/kiarashsardari/Math-Tool/main/math_tool.py" download="math_tool.py">
+          <div class="dl-ico">🐍</div>
+          <div class="dl-info">
+            <div class="dl-name">math_tool.py</div>
+            <div class="dl-meta">هسته کتابخانه · فایل اصلی</div>
+          </div>
+          <div class="dl-arrow">⬇</div>
+        </a>
+
+        <a class="dl-card" href="https://raw.githubusercontent.com/kiarashsardari/Math-Tool/main/test_math_tool.py" download="test_math_tool.py">
+          <div class="dl-ico">🧪</div>
+          <div class="dl-info">
+            <div class="dl-name">test_math_tool.py</div>
+            <div class="dl-meta">تست‌های واحد</div>
+          </div>
+          <div class="dl-arrow">⬇</div>
+        </a>
+
+        <a class="dl-card" href="https://raw.githubusercontent.com/kiarashsardari/Math-Tool/main/requirements.txt" download="requirements.txt">
+          <div class="dl-ico">📦</div>
+          <div class="dl-info">
+            <div class="dl-name">requirements.txt</div>
+            <div class="dl-meta">وابستگی‌های پروژه</div>
+          </div>
+          <div class="dl-arrow">⬇</div>
+        </a>
+      </div>
+
+      <div class="note warn" style="margin-top:16px">
+        💡 اگر فایل در مرورگر باز شد، راست‌کلیک → «Save link as» را انتخاب کنید. برای دانلود تضمینی، از دکمه‌ی ZIP بالا استفاده کنید.
       </div>
     </div>
   </div>
@@ -751,11 +836,6 @@ Plots.show_plot([1, 2, 3, 4], [1, 4, 9, 16])</pre>
           <div class="fn-card">
             <div class="fn-title"><code>Settings(x)</code></div>
             <p class="fn-desc">سازنده کلاس؛ ورودی را به آرایه NumPy یک‌بعدی تخت تبدیل می‌کند. دیکشنری و مجموعه پذیرفته نمی‌شوند.</p>
-            <div class="code-box compact">
-              <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
-              <pre>class Settings:
-    def __init__(self, x)</pre>
-            </div>
             <div class="table-wrap compact">
               <table>
                 <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
@@ -774,12 +854,6 @@ array([1, 2, 3, 4, 5, 6, 7], dtype=object)</pre>
           <div class="fn-card">
             <div class="fn-title"><code>is_empty()</code></div>
             <p class="fn-desc">بررسی می‌کند آیا ورودی خالی است (آرایه خالی یا همه اعضا None).</p>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody><tr><td>—</td><td>—</td><td>بدون پارامتر (متد نمونه)</td></tr></tbody>
-              </table>
-            </div>
             <p class="fn-ret"><strong>بازگشتی:</strong> <code>bool</code> — <code>True</code> اگر خالی باشد.</p>
             <div class="code-box compact">
               <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
@@ -804,12 +878,6 @@ array([1, 2, 3, 4], dtype=object)</pre>
           <div class="fn-card">
             <div class="fn-title"><code>is_iter(x)</code> <span style="font-size:.8rem;color:var(--muted-2);font-weight:600">[static]</span></div>
             <p class="fn-desc">بررسی iterable بودن، با استثنای <code>str</code>، <code>dict</code> و <code>set</code>.</p>
-            <div class="table-wrap compact">
-              <table>
-                <thead><tr><th>پارامتر</th><th>نوع</th><th>توضیح</th></tr></thead>
-                <tbody><tr><td><code>x</code></td><td>any</td><td>هر مقدار برای بررسی</td></tr></tbody>
-              </table>
-            </div>
             <p class="fn-ret"><strong>بازگشتی:</strong> <code>bool</code></p>
             <div class="code-box compact">
               <div class="code-bar"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="fn">python</span></div>
@@ -875,7 +943,6 @@ False</pre>
                 </tbody>
               </table>
             </div>
-            <p class="fn-ret"><strong>خطاها:</strong> <code>TypeError</code> یا <code>ValueError</code> بسته به ترکیب نامعتبر ورودی‌ها.</p>
 
             <p class="fn-ret"><strong>حالت ۱ — بازه با یک تابع:</strong></p>
             <div class="code-box compact">
