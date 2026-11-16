@@ -85,6 +85,15 @@ python --version
 
 <a id="installation"></a>
 ## 📦 نصب و راه‌اندازی
+### نصب مستقیم از PyPI
+
+پس از انتشار کتابخانه در PyPI، می‌توانید آن را با دستور زیر نصب کنید:
+
+    python -m pip install YFZ
+
+سپس در کد پایتون خود از ماژول `math_tool` استفاده کنید:
+
+    import math_tool
 
 ### ۱. کلون کردن مخزن
 
