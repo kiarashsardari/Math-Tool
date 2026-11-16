@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧮 YFZ (Math-Tool)
+# 🧮 YFZ (math tool)
 
 ### کتابخانه‌ی جامع ابزارهای ریاضی، آماری و تحلیل داده در پایتون
 
