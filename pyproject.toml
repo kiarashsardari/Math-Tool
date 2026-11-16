@@ -1,0 +1,35 @@
+
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "YFZ"
+version = "1.0.0"
+description = "A Python mathematical toolkit for statistics, linear algebra, and symbolic mathematics"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.8"
+
+authors = [
+    {name = "Kiarash Sardari"}
+]
+
+keywords = [
+    "math",
+    "mathematics",
+    "statistics",
+    "linear-algebra",
+    "symbolic-mathematics"
+]
+
+dependencies = [
+    "numpy>=1.21",
+    "sympy>=1.9",
+    "matplotlib>=3.5",
+    "pandas>=1.3"
+]
+
+[tool.setuptools]
+py-modules = ["math_tool"]
