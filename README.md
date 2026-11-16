@@ -12,7 +12,7 @@
 
 [![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen?style=for-the-badge)]()
 [![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)]()
-[![License](https://img.shields.io/badge/License-Not%20Specified-red?style=for-the-badge)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 </div>
 
@@ -481,7 +481,8 @@ df = DataHandler.read_or_make_csv(
 
 ---
 
-<a id="tests"></a>## 🧪 اجرای تست‌ها
+<a id="tests"></a>
+## 🧪 اجرای تست‌ها
 
 کتابخانه دارای مجموعه‌ی کامل تست واحد با `unittest` است.
 
@@ -492,14 +493,20 @@ df = DataHandler.read_or_make_csv(
 در صورت موفقیت‌آمیز بودن تمام تست‌ها، پیام `OK` در خروجی نمایش داده می‌شود.
 
 تعداد تست‌ها ممکن است با توسعه و به‌روزرسانی پروژه تغییر کند.
+
 ## 📁 ساختار پروژه
 
 ```text
 Math-Tool/
-├── math_tool.py         # هسته‌ی کتابخانه
-├── test_math_tool.py    # مجموعه تست‌های واحد
-└── README.md            # مستندات پروژه
-```
+├── .github/
+│   └── workflows/
+│       └── publish.yml
+├── math_tool.py
+├── test_math_tool.py
+├── pyproject.toml
+├── requirements.txt
+├── LICENSE
+└── README.md```
 
 ---
 
